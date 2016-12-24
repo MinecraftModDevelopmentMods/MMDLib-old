@@ -1,6 +1,5 @@
 package mmd.lib.asm;
 
-import mmd.lib.api.ITransformer;
 import mmd.lib.util.Platform;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.MCVersion;

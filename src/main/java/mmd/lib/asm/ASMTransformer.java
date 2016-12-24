@@ -1,6 +1,5 @@
 package mmd.lib.asm;
 
-import mmd.lib.api.ITransformer;
 import mmd.lib.util.Platform;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.ClassReader;

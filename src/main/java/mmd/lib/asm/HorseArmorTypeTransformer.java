@@ -1,6 +1,5 @@
 package mmd.lib.asm;
 
-import mmd.lib.api.ITransformer;
 import org.objectweb.asm.tree.*;
 
 class HorseArmorTypeTransformer implements ITransformer {

@@ -1,6 +1,9 @@
 package mmd.lib;
 
 import mmd.lib.config.ConfigurationHandler;
+import mmd.lib.config.LibConfig;
+import mmd.lib.debug.DebugContent;
+import mmd.lib.util.Platform;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
@@ -29,7 +32,10 @@ public class MMDLib {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        ConfigurationHandler.INSTANCE.registerConfig(new LibConfig(event.getSuggestedConfigurationFile()));
         ConfigurationHandler.INSTANCE.load();
+        if (Platform.isDevEnv())
+            DebugContent.register();
     }
 
     @EventHandler

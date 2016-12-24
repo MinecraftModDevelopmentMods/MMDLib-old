@@ -1,4 +1,4 @@
-package mmd.lib.api;
+package mmd.lib.asm;
 
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.ClassNode;
