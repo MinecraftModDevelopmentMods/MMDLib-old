@@ -1,5 +1,6 @@
 package mmd.lib;
 
+import mmd.lib.config.ConfigurationHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
@@ -28,7 +29,7 @@ public class MMDLib {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-
+        ConfigurationHandler.INSTANCE.load();
     }
 
     @EventHandler

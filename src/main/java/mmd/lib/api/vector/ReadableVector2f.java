@@ -29,16 +29,18 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package mmd.lib.client.vector;
+package mmd.lib.api.vector;
 
 /**
  * @author foo
  */
-public interface ReadableVector4f extends ReadableVector3f {
-
+public interface ReadableVector2f extends ReadableVector {
 	/**
-	 * @return w
+	 * @return x
 	 */
-	float getW();
-
+	float getX();
+	/**
+	 * @return y
+	 */
+	float getY();
 }

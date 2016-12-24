@@ -29,33 +29,29 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package mmd.lib.client.vector;
+package mmd.lib.api.vector;
 
 /**
- * Writable interface to Vector2fs
+ * Writable interface to Vector4fs
  * @author $author$
  * @version $revision$
  * $Id$
  */
-public interface WritableVector2f {
+public interface WritableVector4f extends WritableVector3f {
 
 	/**
-	 * Set the X value
-	 * @param x
+	 * Set the W value
+	 * @param w
 	 */
-	void setX(float x);
+	void setW(float w);
 
 	/**
-	 * Set the Y value
-	 * @param y
-	 */
-	void setY(float y);
-
-	/**
-	 * Set the X,Y values
+	 * Set the X,Y,Z,W values
 	 * @param x
    * @param y
+   * @param z
+   * @param w
 	 */
-	void set(float x, float y);
+	void set(float x, float y, float z, float w);
 
 }

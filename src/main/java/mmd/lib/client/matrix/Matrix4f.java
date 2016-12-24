@@ -29,7 +29,11 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package mmd.lib.client.vector;
+package mmd.lib.client.matrix;
+
+import mmd.lib.client.vector.Vector2f;
+import mmd.lib.client.vector.Vector3f;
+import mmd.lib.client.vector.Vector4f;
 
 import java.io.Serializable;
 import java.nio.FloatBuffer;

@@ -1,4 +1,4 @@
-package mmd.lib.client.vector;
+package mmd.lib.client.matrix;
 
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;

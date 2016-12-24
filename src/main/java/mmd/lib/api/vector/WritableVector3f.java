@@ -29,26 +29,28 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package mmd.lib.client.vector;
-
-import java.nio.FloatBuffer;
+package mmd.lib.api.vector;
 
 /**
- * @author foo
+ * Writable interface to Vector3fs
+ * @author $author$
+ * @version $revision$
+ * $Id$
  */
-public interface ReadableVector {
+public interface WritableVector3f extends WritableVector2f {
+
 	/**
-	 * @return the length of the vector
+	 * Set the Z value
+	 * @param z
 	 */
-	float length();
+	void setZ(float z);
+
 	/**
-	 * @return the length squared of the vector
+	 * Set the X,Y,Z values
+	 * @param x
+   * @param y
+   * @param z
 	 */
-	float lengthSquared();
-	/**
-	 * Store this vector in a FloatBuffer
-	 * @param buf The buffer to store it in, at the current position
-	 * @return this
-	 */
-	Vector store(FloatBuffer buf);
+	void set(float x, float y, float z);
+
 }

@@ -1,4 +1,4 @@
-package mmd.lib.client.vector;
+package mmd.lib.client;
 
 public class Radian
 {

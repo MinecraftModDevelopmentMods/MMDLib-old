@@ -32,6 +32,8 @@
 package mmd.lib.client.vector;
 
 import io.netty.buffer.ByteBuf;
+import mmd.lib.api.vector.ReadableVector3f;
+import mmd.lib.api.vector.WritableVector3f;
 import net.minecraft.util.math.Vec3d;
 
 import java.io.Serializable;

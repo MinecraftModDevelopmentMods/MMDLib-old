@@ -31,6 +31,8 @@
  */
 package mmd.lib.client.vector;
 
+import mmd.lib.api.vector.ReadableVector;
+
 import java.io.Serializable;
 import java.nio.FloatBuffer;
 
