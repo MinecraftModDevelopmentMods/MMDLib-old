@@ -1,3 +1,4 @@
+def corePlugin = "mmd.lib.asm.ASMPlugin"
 buildscript {
     repositories {
         jcenter()
@@ -27,6 +28,15 @@ minecraft {
     runDir = "run"
 
     mappings = "stable_29"
+    clientJvmArgs = ["-Dfml.coreMods.load=$corePlugin"]
+    serverJvmArgs = ["-Dfml.coreMods.load=$corePlugin"]
+}
+
+jar {
+    manifest {
+        attributes "FMLCorePlugin": corePlugin
+        attributes "FMLCorePluginContainsFMLMod": "true"
+    }
 }
 
 repositories {
