@@ -1,1 +1,1 @@
-MMDLib
+# MMDLib [![GitHub pull requests](https://img.shields.io/github/issues-pr/MinecraftModDevelopment/MMDLib.svg?style=flat-square)](https://github.com/MinecraftModDevelopment/MMDLib/pulls) [![GitHub issues](https://img.shields.io/github/issues/MinecraftModDevelopment/MMDLib.svg?style=flat-square)](https://github.com/MinecraftModDevelopment/MMDLib/issues) [![GitHub contributors](https://img.shields.io/github/contributors/MinecraftModDevelopment/MMDLib.svg?style=flat-square)](https://github.com/MinecraftModDevelopment/MMDLib/graphs/contributors)
