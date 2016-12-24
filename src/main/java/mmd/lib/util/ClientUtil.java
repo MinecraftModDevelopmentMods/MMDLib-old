@@ -42,7 +42,7 @@ public class ClientUtil {
     }
 
     public static void registerWithMapper(Block block, String modid) {
-        if (Platform.isClient() && block != null) {
+        if (block != null) {
             final String resourcePath = String.format("%s:%s", modid, block.getRegistryName().getResourcePath());
 
             ModelLoader.setCustomStateMapper(block, new DefaultStateMapper() {

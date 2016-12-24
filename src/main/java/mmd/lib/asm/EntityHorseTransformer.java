@@ -3,7 +3,7 @@ package mmd.lib.asm;
 import mmd.lib.api.ITransformer;
 import org.objectweb.asm.tree.*;
 
-public class EntityHorseTransformer implements ITransformer {
+class EntityHorseTransformer implements ITransformer {
 
     @Override
     public String getTarget() {

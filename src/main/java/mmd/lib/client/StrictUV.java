@@ -1,4 +1,4 @@
-package mmd.lib.util;
+package mmd.lib.client;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

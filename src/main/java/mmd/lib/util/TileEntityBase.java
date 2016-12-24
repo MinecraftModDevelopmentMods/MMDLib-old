@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 
-public class TileEntityBase extends TileEntity {
+public abstract class TileEntityBase extends TileEntity {
 
     public int x() {
         return pos.getX();
@@ -30,9 +30,7 @@ public class TileEntityBase extends TileEntity {
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-    }
+    public abstract void readFromNBT(NBTTagCompound compound);
 
     @Override
     public void onChunkUnload() {
@@ -45,9 +43,7 @@ public class TileEntityBase extends TileEntity {
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        return super.writeToNBT(compound);
-    }
+    public abstract NBTTagCompound writeToNBT(NBTTagCompound compound);
 
     @Nullable
     @Override
@@ -82,19 +78,17 @@ public class TileEntityBase extends TileEntity {
     }
 
     public void markForUpdate() {
-        if (this.getWorld() != null) {
-            Block block = world.getBlockState(this.pos).getBlock();
-            this.getWorld().notifyBlockUpdate(this.pos, getWorld().getBlockState(this.pos), getWorld().getBlockState(this.pos), 3);
-            int xCoord = this.pos.getX();
-            int yCoord = this.pos.getY();
-            int zCoord = this.pos.getZ();
-            this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord - 1, zCoord), block);
-            this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord + 1, zCoord), block);
-            this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord - 1, yCoord, zCoord), block);
-            this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord + 1, yCoord, zCoord), block);
-            this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord, zCoord - 1), block);
-            this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord, zCoord + 1), block);
-        }
+        Block block = world.getBlockState(this.pos).getBlock();
+        this.getWorld().notifyBlockUpdate(this.pos, getWorld().getBlockState(this.pos), getWorld().getBlockState(this.pos), 3);
+        int xCoord = this.pos.getX();
+        int yCoord = this.pos.getY();
+        int zCoord = this.pos.getZ();
+        this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord - 1, zCoord), block);
+        this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord + 1, zCoord), block);
+        this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord - 1, yCoord, zCoord), block);
+        this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord + 1, yCoord, zCoord), block);
+        this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord, zCoord - 1), block);
+        this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord, zCoord + 1), block);
     }
 
     public void markForLightUpdate() {

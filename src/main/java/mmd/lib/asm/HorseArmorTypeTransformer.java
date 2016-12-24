@@ -3,7 +3,7 @@ package mmd.lib.asm;
 import mmd.lib.api.ITransformer;
 import org.objectweb.asm.tree.*;
 
-public class HorseArmorTypeTransformer implements ITransformer {
+class HorseArmorTypeTransformer implements ITransformer {
 
     @Override
     public String getTarget() {
