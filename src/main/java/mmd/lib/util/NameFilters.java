@@ -15,12 +15,17 @@ public enum NameFilters implements FilenameFilter {
     EXECUTABLE("exe"),
     LOG("log"),
     DAT("dat"),
+    OBJ("obj"),
     CLASS("class");
 
     private String file;
 
     NameFilters(String file) {
         this.file = file;
+    }
+
+    public String getFile() {
+        return file;
     }
 
     @Override
