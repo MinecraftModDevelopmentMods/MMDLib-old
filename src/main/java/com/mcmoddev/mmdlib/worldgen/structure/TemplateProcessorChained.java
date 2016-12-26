@@ -55,12 +55,12 @@ public abstract class TemplateProcessorChained implements ITemplateProcessor {
     
     /**
      * A delegate of {@link #processBlock(World, BlockPos, BlockInfo)}. This method is provided
-     * for convenience, as classes would have to re-implement the parent processor code on
-     * their own. This method can be used to change the type of block in a structure template.
+     * for convenience, as classes would have to re-implement the child processor code on their
+     * own. This method can be used to change the type of block in a structure template.
      * 
      * @param world The world where the structure is being constructed within.
      * @param pos The position of the block being processed.
-     * @param info The initial instance of the BlockInfo. This will be info that the parent
+     * @param info The initial instance of the BlockInfo. This will be info that the child
      *        provides.
      * @return The new BlockInfo object, this is the block that will be placed in the world.
      */
