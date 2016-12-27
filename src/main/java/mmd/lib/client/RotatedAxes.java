@@ -3,163 +3,143 @@ package mmd.lib.client;
 import mmd.lib.client.matrix.Matrix4f;
 import mmd.lib.client.vector.Vector3f;
 
-public class RotatedAxes
-{
-	public RotatedAxes()
-	{
+public class RotatedAxes {
+	private float rotationYaw;
+	private float rotationPitch;
+	private float rotationRoll;
+	private Matrix4f rotationMatrix;
+
+	public RotatedAxes() {
 		//Load identity
 		rotationMatrix = new Matrix4f();
 	}
-	
-	public RotatedAxes(Matrix4f mat)
-	{
+
+	public RotatedAxes(Matrix4f mat) {
 		rotationMatrix = mat;
 		convertMatrixToAngles();
 	}
-	
-	public RotatedAxes(float yaw, float pitch, float roll)
-	{
+
+	public RotatedAxes(float yaw, float pitch, float roll) {
 		setAngles(yaw, pitch, roll);
 	}
-	
+
 	@Override
-	public RotatedAxes clone()
-	{
+	public RotatedAxes clone() {
 		RotatedAxes newAxes = new RotatedAxes();
 		newAxes.rotationMatrix.load(getMatrix());
 		newAxes.convertMatrixToAngles();
 		return newAxes;
 	}
-	
-	public void setAngles(float yaw, float pitch, float roll)
-	{
+
+	public void setAngles(float yaw, float pitch, float roll) {
 		rotationYaw = yaw;
 		rotationPitch = pitch;
 		rotationRoll = roll;
 		convertAnglesToMatrix();
 	}
-	
-	public float getYaw()
-	{
+
+	public float getYaw() {
 		return rotationYaw;
 	}
-	
-	public float getPitch()
-	{
+
+	public float getPitch() {
 		return rotationPitch;
 	}
-	
-	public float getRoll()
-	{
+
+	public float getRoll() {
 		return rotationRoll;
 	}
-	
-	public Vector3f getXAxis()
-	{
+
+	public Vector3f getXAxis() {
 		return new Vector3f(rotationMatrix.m00, rotationMatrix.m10, rotationMatrix.m20);
 	}
-	
-	public Vector3f getYAxis()
-	{
+
+	public Vector3f getYAxis() {
 		return new Vector3f(rotationMatrix.m01, rotationMatrix.m11, rotationMatrix.m21);
 	}
-	
-	public Vector3f getZAxis()
-	{
+
+	public Vector3f getZAxis() {
 		return new Vector3f(-rotationMatrix.m02, -rotationMatrix.m12, -rotationMatrix.m22);
 	}
-	
-	public Matrix4f getMatrix()
-	{
+
+	public Matrix4f getMatrix() {
 		return rotationMatrix;
 	}
-	
+
 	//Rotate locally by some angle about the yaw axis
-	public void rotateLocalYaw(float rotateBy)
-	{
+	public void rotateLocalYaw(float rotateBy) {
 		rotationMatrix.rotate(rotateBy * 3.14159265F / 180F, getYAxis().normalise(null));
 		convertMatrixToAngles();
 	}
-	
+
 	//Rotate locally by some angle about the pitch axis
-	public void rotateLocalPitch(float rotateBy)
-	{
+	public void rotateLocalPitch(float rotateBy) {
 		rotationMatrix.rotate(rotateBy * 3.14159265F / 180F, getZAxis().normalise(null));
 		convertMatrixToAngles();
 	}
-	
+
 	//Rotate locally by some angle about the roll axis
-	public void rotateLocalRoll(float rotateBy)
-	{
+	public void rotateLocalRoll(float rotateBy) {
 		rotationMatrix.rotate(rotateBy * 3.14159265F / 180F, getXAxis().normalise(null));
 		convertMatrixToAngles();
 	}
-	
+
 	//Rotate globally by some angle about the yaw axis
-	public RotatedAxes rotateGlobalYaw(float rotateBy)
-	{
+	public RotatedAxes rotateGlobalYaw(float rotateBy) {
 		rotationMatrix.rotate(rotateBy * 3.14159265F / 180F, new Vector3f(0F, 1F, 0F));
 		convertMatrixToAngles();
 		return this;
 	}
-	
+
 	//Rotate globally by some angle about the pitch axis
-	public RotatedAxes rotateGlobalPitch(float rotateBy)
-	{
+	public RotatedAxes rotateGlobalPitch(float rotateBy) {
 		rotationMatrix.rotate(rotateBy * 3.14159265F / 180F, new Vector3f(0F, 0F, 1F));
 		convertMatrixToAngles();
 		return this;
 	}
-	
+
 	//Rotate globally by some angle about the roll axis
-	public RotatedAxes rotateGlobalRoll(float rotateBy)
-	{
+	public RotatedAxes rotateGlobalRoll(float rotateBy) {
 		rotationMatrix.rotate(rotateBy * 3.14159265F / 180F, new Vector3f(1F, 0F, 0F));
 		convertMatrixToAngles();
 		return this;
 	}
-	
+
 	//Rotate globally by some angle about the yaw axis
-	public RotatedAxes rotateGlobalYawInRads(float rotateBy)
-	{
+	public RotatedAxes rotateGlobalYawInRads(float rotateBy) {
 		rotationMatrix.rotate(rotateBy, new Vector3f(0F, 1F, 0F));
 		convertMatrixToAngles();
 		return this;
 	}
-	
+
 	//Rotate globally by some angle about the pitch axis
-	public RotatedAxes rotateGlobalPitchInRads(float rotateBy)
-	{
+	public RotatedAxes rotateGlobalPitchInRads(float rotateBy) {
 		rotationMatrix.rotate(rotateBy, new Vector3f(0F, 0F, 1F));
 		convertMatrixToAngles();
 		return this;
 	}
-	
+
 	//Rotate globally by some angle about the roll axis
-	public RotatedAxes rotateGlobalRollInRads(float rotateBy)
-	{
+	public RotatedAxes rotateGlobalRollInRads(float rotateBy) {
 		rotationMatrix.rotate(rotateBy, new Vector3f(1F, 0F, 0F));
 		convertMatrixToAngles();
 		return this;
 	}
-	
+
 	//Rotate by some angle around some axis
-	public void rotateLocal(float rotateBy, Vector3f rotateAround)
-	{
+	public void rotateLocal(float rotateBy, Vector3f rotateAround) {
 		rotationMatrix.rotate(rotateBy * 3.14159265F / 180F, findLocalVectorGlobally(rotateAround));
 		convertMatrixToAngles();
 	}
-	
+
 	//Rotate by some angle around some axis
-	public void rotateGlobal(float rotateBy, Vector3f rotateAround)
-	{
+	public void rotateGlobal(float rotateBy, Vector3f rotateAround) {
 		rotationMatrix.rotate(rotateBy * 3.14159265F / 180F, rotateAround);
 		convertMatrixToAngles();
 	}
-	
+
 	//Find a global vector in terms of this basis.
-	public Vector3f findGlobalVectorLocally(Vector3f in)
-	{
+	public Vector3f findGlobalVectorLocally(Vector3f in) {
 		//Create a new matrix and use the first column to store the vector we are rotating
 		Matrix4f mat = new Matrix4f();
 		mat.m00 = in.x;
@@ -171,10 +151,9 @@ public class RotatedAxes
 		mat.rotate(-rotationRoll * 3.14159265F / 180F, new Vector3f(1F, 0F, 0F));
 		return new Vector3f(mat.m00, mat.m10, mat.m20);
 	}
-	
+
 	//Find a local vector in terms of the global axes.
-	public Vector3f findLocalVectorGlobally(Vector3f in)
-	{
+	public Vector3f findLocalVectorGlobally(Vector3f in) {
 		//Create a new matrix and use the first column to store the vector we are rotating
 		Matrix4f mat = new Matrix4f();
 		mat.m00 = in.x;
@@ -187,8 +166,7 @@ public class RotatedAxes
 		return new Vector3f(mat.m00, mat.m10, mat.m20);
 	}
 
-	private void convertAnglesToMatrix()
-	{
+	private void convertAnglesToMatrix() {
 		//Re-load the identity
 		rotationMatrix = new Matrix4f();
 		rotationMatrix.rotate(rotationRoll * 3.14159265F / 180F, new Vector3f(1F, 0F, 0F));
@@ -196,9 +174,8 @@ public class RotatedAxes
 		rotationMatrix.rotate(rotationYaw * 3.14159265F / 180F, new Vector3f(0F, 1F, 0F));
 		convertMatrixToAngles();
 	}
-	
-	private void convertMatrixToAngles()
-	{		
+
+	private void convertMatrixToAngles() {
 		/*rotationPitch = (float)Math.acos(getXAxis().z) * 180F / 3.14159265F;
 		if(rotationPitch == 0F || rotationPitch == 180F)
 		{
@@ -210,11 +187,11 @@ public class RotatedAxes
 			Matrix4f unyawedMatrix;
 			rotationRoll = (float)Math.atan2(-getYAxis().z, getZAxis().z) * 180F / 3.14159265F;
 		}*/
-		
-		rotationYaw = (float)Math.atan2(rotationMatrix.m20, rotationMatrix.m00) * 180F / 3.14159265F;
-		rotationPitch = (float)Math.atan2(-rotationMatrix.m10, Math.sqrt(rotationMatrix.m12 * rotationMatrix.m12 + rotationMatrix.m11 * rotationMatrix.m11)) * 180F / 3.14159265F;
-		rotationRoll = (float)Math.atan2(rotationMatrix.m12, rotationMatrix.m11) * 180F / 3.14159265F;
-		
+
+		rotationYaw = (float) Math.atan2(rotationMatrix.m20, rotationMatrix.m00) * 180F / 3.14159265F;
+		rotationPitch = (float) Math.atan2(-rotationMatrix.m10, Math.sqrt(rotationMatrix.m12 * rotationMatrix.m12 + rotationMatrix.m11 * rotationMatrix.m11)) * 180F / 3.14159265F;
+		rotationRoll = (float) Math.atan2(rotationMatrix.m12, rotationMatrix.m11) * 180F / 3.14159265F;
+
 		/*
 		double xx = rotationMatrix.m00;
 		double xy = rotationMatrix.m10;
@@ -222,23 +199,22 @@ public class RotatedAxes
 		double zx = rotationMatrix.m02;
 		double zy = rotationMatrix.m12;
 		double zz = rotationMatrix.m22;
-		
+
 		double sqrtX = Math.sqrt(xx * xx + xz * xz);
 		sqrtX = (sqrtX < 1 ? sqrtX : 1);
 		double sqrtZ = Math.sqrt(zx * zx + zz * zz);
 		sqrtZ = (sqrtZ < 1 ? sqrtZ : 1);
-		
+
 		rotationYaw = (float)Math.atan2(zx, zz) * 180F / 3.14159265F;
 		rotationPitch = -(float)Math.atan2(zy, sqrtZ) * 180F / 3.14159265F;
-		
+
 		Matrix4f rollOnlyMatrix = rotationMatrix.rotate(rotationYaw * 3.14159265F / 180F, new Vector3f(0F, 1F, 0F), null).rotate(rotationPitch * 3.14159265F / 180F, new Vector3f(1F, 0F, 0F));
-		
+
 		rotationRoll = (float)Math.atan2(rollOnlyMatrix.m10, rollOnlyMatrix.m00) * 180F / 3.14159265F;
 		*/
 	}
-	
-	public RotatedAxes findLocalAxesGlobally(RotatedAxes in)
-	{
+
+	public RotatedAxes findLocalAxesGlobally(RotatedAxes in) {
 		//Take the input matrix
 		Matrix4f mat = new Matrix4f();
 		mat.load(in.getMatrix());
@@ -249,15 +225,9 @@ public class RotatedAxes
 		//Return the globalised matrix
 		return new RotatedAxes(mat);
 	}
-	
+
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return "RotatedAxes[Yaw = " + getYaw() + ", Pitch = " + getPitch() + ", Roll = " + getRoll() + "]";
 	}
-	
-	private float rotationYaw;
-	private float rotationPitch;
-	private float rotationRoll;
-	private Matrix4f rotationMatrix;
 }

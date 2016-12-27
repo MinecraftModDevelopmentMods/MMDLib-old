@@ -7,14 +7,14 @@ import java.io.File;
 
 public class LibConfig extends MMDConfig {
 
-    public static final ResourceLocation IDENTITY = new ResourceLocation(MMDLib.MOD_ID, "config");
+	public static final ResourceLocation IDENTITY = new ResourceLocation(MMDLib.MOD_ID, "config");
 
-    public LibConfig(File file) {
-        super(file);
-    }
+	public LibConfig(File file) {
+		super(file);
+	}
 
-    @Override
-    public ResourceLocation getIdentifier() {
-        return IDENTITY;
-    }
+	@Override
+	public ResourceLocation getIdentifier() {
+		return IDENTITY;
+	}
 }

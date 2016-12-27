@@ -9,37 +9,29 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 
 @SideOnly(Side.CLIENT)
-public class TextureGroup
-{
-	public TextureGroup()
-	{
+public class TextureGroup {
+	public ArrayList<TexturedPolygon> poly;
+	public String texture;
+
+	public TextureGroup() {
 		poly = new ArrayList<TexturedPolygon>();
 		texture = "";
 	}
-	
-	public void addPoly(TexturedPolygon quad)
-	{
+
+	public void addPoly(TexturedPolygon quad) {
 		poly.add(quad);
 	}
 
-	public void loadTexture()
-	{
+	public void loadTexture() {
 		loadTexture(-1);
 	}
-	
-	public void loadTexture(int defaultTexture)
-	{
-		if(!texture.equals(""))
-		{
+
+	public void loadTexture(int defaultTexture) {
+		if (!texture.equals("")) {
 			TextureManager renderengine = Minecraft.getMinecraft().renderEngine;
-	        renderengine.bindTexture(new ResourceLocation("", texture));
-		}
-		else if(defaultTexture > -1)
-		{
+			renderengine.bindTexture(new ResourceLocation("", texture));
+		} else if (defaultTexture > -1) {
 			Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("", ""));
 		}
 	}
-	
-	public ArrayList<TexturedPolygon> poly;
-	public String texture;
 }

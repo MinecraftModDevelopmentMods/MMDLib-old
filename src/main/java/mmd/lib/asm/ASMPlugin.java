@@ -14,35 +14,35 @@ import java.util.Map;
 @MCVersion("1.10.2")
 @SortingIndex(1001)
 public class ASMPlugin implements IFMLLoadingPlugin {
-    static List<ITransformer> transformerList = new ArrayList<>();
+	static List<ITransformer> transformerList = new ArrayList<>();
 
-    public ASMPlugin() {
-        transformerList.add(new EntityHorseTransformer());
-        transformerList.add(new HorseArmorTypeTransformer());
-    }
+	public ASMPlugin() {
+		transformerList.add(new EntityHorseTransformer());
+		transformerList.add(new HorseArmorTypeTransformer());
+	}
 
-    @Override
-    public String[] getASMTransformerClass() {
-        return new String[]{ASMTransformer.class.getName()};
-    }
+	@Override
+	public String[] getASMTransformerClass() {
+		return new String[]{ASMTransformer.class.getName()};
+	}
 
-    @Override
-    public String getModContainerClass() {
-        return null;
-    }
+	@Override
+	public String getModContainerClass() {
+		return null;
+	}
 
-    @Override
-    public String getSetupClass() {
-        return null;
-    }
+	@Override
+	public String getSetupClass() {
+		return null;
+	}
 
-    @Override
-    public void injectData(Map<String, Object> data) {
-        Platform.setDev((Boolean) data.get("runtimeDeobfuscationEnabled"));
-    }
+	@Override
+	public void injectData(Map<String, Object> data) {
+		Platform.setDev((Boolean) data.get("runtimeDeobfuscationEnabled"));
+	}
 
-    @Override
-    public String getAccessTransformerClass() {
-        return null;
-    }
+	@Override
+	public String getAccessTransformerClass() {
+		return null;
+	}
 }
