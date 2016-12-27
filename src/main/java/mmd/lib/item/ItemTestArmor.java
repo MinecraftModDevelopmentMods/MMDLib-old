@@ -10,20 +10,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ItemTestArmor extends Item implements IHorseArmor {
-    public ItemTestArmor() {
-        setRegistryName(MMDLib.MOD_ID, "test_horse_armor");
-        setUnlocalizedName(MMDLib.MOD_ID + ".test_horse_armor");
-        setCreativeTab(CreativeTabs.DECORATIONS);
-        GameRegistry.register(this);
-    }
+	public ItemTestArmor() {
+		setRegistryName(MMDLib.MOD_ID, "test_horse_armor");
+		setUnlocalizedName(MMDLib.MOD_ID + ".test_horse_armor");
+		setCreativeTab(CreativeTabs.DECORATIONS);
+		GameRegistry.register(this);
+	}
 
-    @Override
-    public HorseArmorType getArmorType() {
-        return HorseArmorType.DIAMOND;
-    }
+	@Override
+	public HorseArmorType getArmorType() {
+		return HorseArmorType.DIAMOND;
+	}
 
-    @Override
-    public String getArmorTexture(EntityHorse horse, ItemStack stack) {
-        return "textures/entity/horse/armor/horse_armor_test.png";
-    }
+	@Override
+	public String getArmorTexture(EntityHorse horse, ItemStack stack) {
+		return "textures/entity/horse/armor/horse_armor_test.png";
+	}
 }

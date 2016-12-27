@@ -38,12 +38,11 @@ import java.io.Serializable;
 import java.nio.FloatBuffer;
 
 /**
- *
  * Holds a 4-tuple vector.
- * 
+ *
  * @author cix_foo <cix_foo@users.sourceforge.net>
  * @version $Revision$
- * $Id$
+ *          $Id$
  */
 
 public class Vector4f extends Vector implements Serializable, ReadableVector4f, WritableVector4f {
@@ -71,6 +70,84 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 	 */
 	public Vector4f(float x, float y, float z, float w) {
 		set(x, y, z, w);
+	}
+
+	/**
+	 * Add a vector to another vector and place the result in a destination
+	 * vector.
+	 *
+	 * @param left
+	 * 		The LHS vector
+	 * @param right
+	 * 		The RHS vector
+	 * @param dest
+	 * 		The destination vector, or null if a new vector is to be created
+	 *
+	 * @return the sum of left and right in dest
+	 */
+	public static Vector4f add(Vector4f left, Vector4f right, Vector4f dest) {
+		if (dest == null)
+			return new Vector4f(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
+		else {
+			dest.set(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
+			return dest;
+		}
+	}
+
+	/**
+	 * Subtract a vector from another vector and place the result in a destination
+	 * vector.
+	 *
+	 * @param left
+	 * 		The LHS vector
+	 * @param right
+	 * 		The RHS vector
+	 * @param dest
+	 * 		The destination vector, or null if a new vector is to be created
+	 *
+	 * @return left minus right in dest
+	 */
+	public static Vector4f sub(Vector4f left, Vector4f right, Vector4f dest) {
+		if (dest == null)
+			return new Vector4f(left.x - right.x, left.y - right.y, left.z - right.z, left.w - right.w);
+		else {
+			dest.set(left.x - right.x, left.y - right.y, left.z - right.z, left.w - right.w);
+			return dest;
+		}
+	}
+
+	/**
+	 * The dot product of two vectors is calculated as
+	 * v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w
+	 *
+	 * @param left
+	 * 		The LHS vector
+	 * @param right
+	 * 		The RHS vector
+	 *
+	 * @return left dot right
+	 */
+	public static float dot(Vector4f left, Vector4f right) {
+		return left.x * right.x + left.y * right.y + left.z * right.z + left.w * right.w;
+	}
+
+	/**
+	 * Calculate the angle between two vectors, in radians
+	 *
+	 * @param a
+	 * 		A vector
+	 * @param b
+	 * 		The other vector
+	 *
+	 * @return the angle between the two vectors, in radians
+	 */
+	public static float angle(Vector4f a, Vector4f b) {
+		float dls = dot(a, b) / (a.length() * b.length());
+		if (dls < -1f)
+			dls = -1f;
+		else if (dls > 1.0f)
+			dls = 1.0f;
+		return (float) Math.acos(dls);
 	}
 
 	/* (non-Javadoc)
@@ -105,7 +182,10 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 
 	/**
 	 * Load from another Vector4f
-	 * @param src The source vector
+	 *
+	 * @param src
+	 * 		The source vector
+	 *
 	 * @return this
 	 */
 	public Vector4f set(ReadableVector4f src) {
@@ -126,8 +206,12 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 
 	/**
 	 * Translate a vector
-	 * @param x The translation in x
-	 * @param y the translation in y
+	 *
+	 * @param x
+	 * 		The translation in x
+	 * @param y
+	 * 		the translation in y
+	 *
 	 * @return this
 	 */
 	public Vector4f translate(float x, float y, float z, float w) {
@@ -139,42 +223,8 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 	}
 
 	/**
-	 * Add a vector to another vector and place the result in a destination
-	 * vector.
-	 * @param left The LHS vector
-	 * @param right The RHS vector
-	 * @param dest The destination vector, or null if a new vector is to be created
-	 * @return the sum of left and right in dest
-	 */
-	public static Vector4f add(Vector4f left, Vector4f right, Vector4f dest) {
-		if (dest == null)
-			return new Vector4f(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
-		else {
-			dest.set(left.x + right.x, left.y + right.y, left.z + right.z, left.w + right.w);
-			return dest;
-		}
-	}
-
-	/**
-	 * Subtract a vector from another vector and place the result in a destination
-	 * vector.
-	 * @param left The LHS vector
-	 * @param right The RHS vector
-	 * @param dest The destination vector, or null if a new vector is to be created
-	 * @return left minus right in dest
-	 */
-	public static Vector4f sub(Vector4f left, Vector4f right, Vector4f dest) {
-		if (dest == null)
-			return new Vector4f(left.x - right.x, left.y - right.y, left.z - right.z, left.w - right.w);
-		else {
-			dest.set(left.x - right.x, left.y - right.y, left.z - right.z, left.w - right.w);
-			return dest;
-		}
-	}
-
-
-	/**
 	 * Negate a vector
+	 *
 	 * @return this
 	 */
 	@Override
@@ -188,7 +238,10 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 
 	/**
 	 * Negate a vector and place the result in a destination vector.
-	 * @param dest The destination vector or null if a new vector is to be created
+	 *
+	 * @param dest
+	 * 		The destination vector or null if a new vector is to be created
+	 *
 	 * @return the negated vector
 	 */
 	public Vector4f negate(Vector4f dest) {
@@ -201,10 +254,12 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 		return dest;
 	}
 
-
 	/**
 	 * Normalise this vector and place the result in another vector.
-	 * @param dest The destination vector, or null if a new vector is to be created
+	 *
+	 * @param dest
+	 * 		The destination vector, or null if a new vector is to be created
+	 *
 	 * @return the normalised vector
 	 */
 	public Vector4f normalise(Vector4f dest) {
@@ -216,32 +271,6 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 			dest.set(x / l, y / l, z / l, w / l);
 
 		return dest;
-	}
-
-	/**
-	 * The dot product of two vectors is calculated as
-	 * v1.x * v2.x + v1.y * v2.y + v1.z * v2.z + v1.w * v2.w
-	 * @param left The LHS vector
-	 * @param right The RHS vector
-	 * @return left dot right
-	 */
-	public static float dot(Vector4f left, Vector4f right) {
-		return left.x * right.x + left.y * right.y + left.z * right.z + left.w * right.w;
-	}
-
-	/**
-	 * Calculate the angle between two vectors, in radians
-	 * @param a A vector
-	 * @param b The other vector
-	 * @return the angle between the two vectors, in radians
-	 */
-	public static float angle(Vector4f a, Vector4f b) {
-		float dls = dot(a, b) / (a.length() * b.length());
-		if (dls < -1f)
-			dls = -1f;
-		else if (dls > 1.0f)
-			dls = 1.0f;
-		return (float)Math.acos(dls);
 	}
 
 	/* (non-Javadoc)
@@ -296,15 +325,8 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 	}
 
 	/**
-	 * @return y
-	 */
-	@Override
-	public final float getY() {
-		return y;
-	}
-
-	/**
 	 * Set X
+	 *
 	 * @param x
 	 */
 	@Override
@@ -313,23 +335,22 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 	}
 
 	/**
+	 * @return y
+	 */
+	@Override
+	public final float getY() {
+		return y;
+	}
+
+	/**
 	 * Set Y
+	 *
 	 * @param y
 	 */
 	@Override
 	public final void setY(float y) {
 		this.y = y;
 	}
-
-	/**
-	 * Set Z
-	 * @param z
-	 */
-	@Override
-	public void setZ(float z) {
-		this.z = z;
-	}
-
 
 	/* (Overrides)
 	 * @see org.lwjgl.vector.ReadableVector3f#getZ()
@@ -340,12 +361,13 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 	}
 
 	/**
-	 * Set W
-	 * @param w
+	 * Set Z
+	 *
+	 * @param z
 	 */
 	@Override
-	public void setW(float w) {
-		this.w = w;
+	public void setZ(float z) {
+		this.z = z;
 	}
 
 	/* (Overrides)
@@ -354,6 +376,16 @@ public class Vector4f extends Vector implements Serializable, ReadableVector4f, 
 	@Override
 	public float getW() {
 		return w;
+	}
+
+	/**
+	 * Set W
+	 *
+	 * @param w
+	 */
+	@Override
+	public void setW(float w) {
+		this.w = w;
 	}
 
 

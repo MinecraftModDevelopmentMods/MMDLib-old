@@ -35,13 +35,12 @@ import java.io.Serializable;
 import java.nio.FloatBuffer;
 
 /**
- *
  * Base class for matrices. When a matrix is constructed it will be the identity
  * matrix unless otherwise stated.
  *
  * @author cix_foo <cix_foo@users.sourceforge.net>
  * @version $Revision$
- * $Id$
+ *          $Id$
  */
 public abstract class Matrix implements Serializable {
 
@@ -54,6 +53,7 @@ public abstract class Matrix implements Serializable {
 
 	/**
 	 * Set this matrix to be the identity matrix.
+	 *
 	 * @return this
 	 */
 	public abstract Matrix setIdentity();
@@ -61,6 +61,7 @@ public abstract class Matrix implements Serializable {
 
 	/**
 	 * Invert this matrix
+	 *
 	 * @return this
 	 */
 	public abstract Matrix invert();
@@ -70,7 +71,9 @@ public abstract class Matrix implements Serializable {
 	 * Load from a float buffer. The buffer stores the matrix in column major
 	 * (OpenGL) order.
 	 *
-	 * @param buf A float buffer to read from
+	 * @param buf
+	 * 		A float buffer to read from
+	 *
 	 * @return this
 	 */
 	public abstract Matrix load(FloatBuffer buf);
@@ -80,7 +83,9 @@ public abstract class Matrix implements Serializable {
 	 * Load from a float buffer. The buffer stores the matrix in row major
 	 * (mathematical) order.
 	 *
-	 * @param buf A float buffer to read from
+	 * @param buf
+	 * 		A float buffer to read from
+	 *
 	 * @return this
 	 */
 	public abstract Matrix loadTranspose(FloatBuffer buf);
@@ -88,6 +93,7 @@ public abstract class Matrix implements Serializable {
 
 	/**
 	 * Negate this matrix
+	 *
 	 * @return this
 	 */
 	public abstract Matrix negate();
@@ -96,7 +102,10 @@ public abstract class Matrix implements Serializable {
 	/**
 	 * Store this matrix in a float buffer. The matrix is stored in column
 	 * major (openGL) order.
-	 * @param buf The buffer to store this matrix in
+	 *
+	 * @param buf
+	 * 		The buffer to store this matrix in
+	 *
 	 * @return this
 	 */
 	public abstract Matrix store(FloatBuffer buf);
@@ -105,7 +114,10 @@ public abstract class Matrix implements Serializable {
 	/**
 	 * Store this matrix in a float buffer. The matrix is stored in row
 	 * major (maths) order.
-	 * @param buf The buffer to store this matrix in
+	 *
+	 * @param buf
+	 * 		The buffer to store this matrix in
+	 *
 	 * @return this
 	 */
 	public abstract Matrix storeTranspose(FloatBuffer buf);
@@ -113,6 +125,7 @@ public abstract class Matrix implements Serializable {
 
 	/**
 	 * Transpose this matrix
+	 *
 	 * @return this
 	 */
 	public abstract Matrix transpose();
@@ -120,6 +133,7 @@ public abstract class Matrix implements Serializable {
 
 	/**
 	 * Set this matrix to 0.
+	 *
 	 * @return this
 	 */
 	public abstract Matrix setZero();

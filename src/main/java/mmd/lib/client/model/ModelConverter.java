@@ -5,12 +5,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ModelConverter extends ModelBase {
-	
+
 	public ModelRendererTurbo bodyModel[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo model[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo bodyDoorOpenModel[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo bodyDoorCloseModel[] = new ModelRendererTurbo[0];
-	
+
 	public ModelRendererTurbo turretModel[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo barrelModel[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo frontWheelModel[] = new ModelRendererTurbo[0];
@@ -25,8 +25,8 @@ public class ModelConverter extends ModelBase {
 	public ModelRendererTurbo leftTrackWheelModels[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo trailerModel[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo steeringWheelModel[] = new ModelRendererTurbo[0];
-	
-	public void render(){
+
+	public void render() {
 		render(bodyModel);
 		render(model);
 		render(bodyDoorCloseModel);
@@ -46,7 +46,7 @@ public class ModelConverter extends ModelBase {
 		render(steeringWheelModel);
 	}
 
-	public void flipAll(){
+	public void flipAll() {
 		flip(bodyModel);
 		flip(model);
 		flip(bodyDoorOpenModel);
@@ -66,12 +66,12 @@ public class ModelConverter extends ModelBase {
 		flip(trailerModel);
 		flip(steeringWheelModel);
 	}
-	
+
 	private void flip(ModelRendererTurbo[] bodyModel2) {
 		// TODO Auto-generated method stub
 	}
 
-	public void translateAll(float x, float y, float z){
+	public void translateAll(float x, float y, float z) {
 		translate(bodyModel, x, y, z);
 		translate(model, x, y, z);
 		translate(bodyDoorOpenModel, x, y, z);

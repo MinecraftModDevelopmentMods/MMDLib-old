@@ -5,7 +5,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ModelBase extends net.minecraft.client.model.ModelBase {
-	
+
 	public ModelRendererTurbo base[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo open[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo closed[] = new ModelRendererTurbo[0];
@@ -19,8 +19,8 @@ public class ModelBase extends net.minecraft.client.model.ModelBase {
 	public ModelRendererTurbo r8[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo r9[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo r0[] = new ModelRendererTurbo[0];
-	   
-	public void render(){
+
+	public void render() {
 		render(base);
 		render(open);
 		render(closed);
@@ -35,22 +35,22 @@ public class ModelBase extends net.minecraft.client.model.ModelBase {
 		render(r8);
 		render(r9);
 	}
-	
-	public void render(ModelRendererTurbo[] part){
-		for(ModelRendererTurbo mrt : part){
+
+	public void render(ModelRendererTurbo[] part) {
+		for (ModelRendererTurbo mrt : part) {
 			mrt.render();
 		}
 	}
-	
-	protected void translate(ModelRendererTurbo[] model, float x, float y, float z){
-		for(ModelRendererTurbo mod : model){
+
+	protected void translate(ModelRendererTurbo[] model, float x, float y, float z) {
+		for (ModelRendererTurbo mod : model) {
 			mod.rotationPointX += x;
 			mod.rotationPointY += y;
 			mod.rotationPointZ += z;
 		}
 	}
-	
-	public void translateAll(float x, float y, float z){
+
+	public void translateAll(float x, float y, float z) {
 		translate(base, x, y, z);
 		translate(open, x, y, z);
 		translate(closed, x, y, z);
@@ -65,5 +65,5 @@ public class ModelBase extends net.minecraft.client.model.ModelBase {
 		translate(r8, x, y, z);
 		translate(r9, x, y, z);
 	}
-	
+
 }
