@@ -1,4 +1,4 @@
-def corePlugin = "mmd.lib.asm.ASMPlugin"
+def corePlugin = "com.mcmoddev.lib.ASMPlugin"
 buildscript {
     repositories {
         jcenter()
