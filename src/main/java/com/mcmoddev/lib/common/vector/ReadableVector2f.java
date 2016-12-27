@@ -29,37 +29,19 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.mcmoddev.lib.api.vector;
+package com.mcmoddev.lib.common.vector;
 
 /**
- * Writable interface to Vector2fs
- *
- * @author $author$
- * @version $revision$
- *          $Id$
+ * @author foo
  */
-public interface WritableVector2f {
+public interface ReadableVector2f extends ReadableVector {
+    /**
+     * @return x
+     */
+    float getX();
 
     /**
-     * Set the X value
-     *
-     * @param x
+     * @return y
      */
-    void setX(float x);
-
-    /**
-     * Set the Y value
-     *
-     * @param y
-     */
-    void setY(float y);
-
-    /**
-     * Set the X,Y values
-     *
-     * @param x
-     * @param y
-     */
-    void set(float x, float y);
-
+    float getY();
 }

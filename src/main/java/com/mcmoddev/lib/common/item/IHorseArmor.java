@@ -1,4 +1,4 @@
-package com.mcmoddev.lib.api.item;
+package com.mcmoddev.lib.common.item;
 
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.HorseArmorType;

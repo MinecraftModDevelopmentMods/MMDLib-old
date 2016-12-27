@@ -29,32 +29,14 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.mcmoddev.lib.api.vector;
+package com.mcmoddev.lib.common.vector;
 
 /**
- * Writable interface to Vector4fs
- *
- * @author $author$
- * @version $revision$
- *          $Id$
+ * @author foo
  */
-public interface WritableVector4f extends WritableVector3f {
-
+public interface ReadableVector3f extends ReadableVector2f {
     /**
-     * Set the W value
-     *
-     * @param w
+     * @return z
      */
-    void setW(float w);
-
-    /**
-     * Set the X,Y,Z,W values
-     *
-     * @param x
-     * @param y
-     * @param z
-     * @param w
-     */
-    void set(float x, float y, float z, float w);
-
+    float getZ();
 }
