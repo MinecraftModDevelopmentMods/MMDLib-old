@@ -3,7 +3,9 @@ package com.mcmoddev.lib;
 import com.mcmoddev.lib.config.ConfigurationHandler;
 import com.mcmoddev.lib.config.LibConfig;
 import com.mcmoddev.lib.debug.DebugContent;
+import com.mcmoddev.lib.handler.ShieldHandler;
 import com.mcmoddev.lib.util.Platform;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
@@ -32,6 +34,7 @@ public class MMDLib {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register(new ShieldHandler());
         ConfigurationHandler.INSTANCE.registerConfig(new LibConfig(event.getSuggestedConfigurationFile()));
         ConfigurationHandler.INSTANCE.load();
         if (Platform.isDevEnv())
