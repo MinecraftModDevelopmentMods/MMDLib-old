@@ -1,7 +1,7 @@
 package com.mcmoddev.lib.item;
 
 import com.mcmoddev.lib.MMDLib;
-import com.mcmoddev.lib.api.item.IHorseArmor;
+import com.mcmoddev.lib.common.item.IHorseArmor;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.HorseArmorType;

@@ -1,7 +1,7 @@
 package com.mcmoddev.lib.asm;
 
 import com.google.common.base.Optional;
-import com.mcmoddev.lib.api.item.IHorseArmor;
+import com.mcmoddev.lib.common.item.IHorseArmor;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.HorseArmorType;
 import net.minecraft.item.ItemStack;

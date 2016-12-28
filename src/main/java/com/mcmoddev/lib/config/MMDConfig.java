@@ -1,9 +1,9 @@
 package com.mcmoddev.lib.config;
 
-import com.mcmoddev.lib.api.annotations.ConfigProperty;
-import com.mcmoddev.lib.api.annotations.ConfigProperty.IntBool;
-import com.mcmoddev.lib.api.annotations.ConfigProperty.RangeInteger;
-import com.mcmoddev.lib.api.annotations.ConfigProperty.StringLimit;
+import com.mcmoddev.lib.annotations.ConfigProperty;
+import com.mcmoddev.lib.annotations.ConfigProperty.IntBool;
+import com.mcmoddev.lib.annotations.ConfigProperty.RangeInteger;
+import com.mcmoddev.lib.annotations.ConfigProperty.StringLimit;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.config.Configuration;
