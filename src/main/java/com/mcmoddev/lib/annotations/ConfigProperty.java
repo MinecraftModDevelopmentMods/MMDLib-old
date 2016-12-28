@@ -1,4 +1,4 @@
-package com.mcmoddev.lib.api.annotations;
+package com.mcmoddev.lib.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

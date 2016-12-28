@@ -47,8 +47,8 @@ public class Platform {
 
     /**
      * Rotate EnumFacing around clockwise
-     *     * @param forward
-     *         EnumFacing to rotate
+     * * @param forward
+     * EnumFacing to rotate
      *
      * @return rotated EnumFacing
      */

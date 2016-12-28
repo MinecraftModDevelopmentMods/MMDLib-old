@@ -29,14 +29,33 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.mcmoddev.lib.api.vector;
+package com.mcmoddev.lib.common.vector;
+
+import com.mcmoddev.lib.client.vector.Vector;
+
+import java.nio.FloatBuffer;
 
 /**
  * @author foo
  */
-public interface ReadableVector3f extends ReadableVector2f {
+public interface ReadableVector {
     /**
-     * @return z
+     * @return the length of the vector
      */
-    float getZ();
+    float length();
+
+    /**
+     * @return the length squared of the vector
+     */
+    float lengthSquared();
+
+    /**
+     * Store this vector in a FloatBuffer
+     *
+     * @param buf
+     *         The buffer to store it in, at the current position
+     *
+     * @return this
+     */
+    Vector store(FloatBuffer buf);
 }

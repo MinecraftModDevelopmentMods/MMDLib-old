@@ -176,42 +176,9 @@ public class RotatedAxes {
     }
 
     private void convertMatrixToAngles() {
-        /*rotationPitch = (float)Math.acos(getXAxis().z) * 180F / 3.14159265F;
-		if(rotationPitch == 0F || rotationPitch == 180F)
-		{
-			//You've hit a pole. Exactly. With a float. Well done.
-		}
-		else
-		{
-			rotationYaw = (float)Math.atan2(-getXAxis().y, -getXAxis().x) * 180F / 3.14159265F;
-			Matrix4f unyawedMatrix;
-			rotationRoll = (float)Math.atan2(-getYAxis().z, getZAxis().z) * 180F / 3.14159265F;
-		}*/
-
         rotationYaw = (float) Math.atan2(rotationMatrix.m20, rotationMatrix.m00) * 180F / 3.14159265F;
         rotationPitch = (float) Math.atan2(-rotationMatrix.m10, Math.sqrt(rotationMatrix.m12 * rotationMatrix.m12 + rotationMatrix.m11 * rotationMatrix.m11)) * 180F / 3.14159265F;
         rotationRoll = (float) Math.atan2(rotationMatrix.m12, rotationMatrix.m11) * 180F / 3.14159265F;
-
-		/*
-		double xx = rotationMatrix.m00;
-		double xy = rotationMatrix.m10;
-		double xz = rotationMatrix.m20;
-		double zx = rotationMatrix.m02;
-		double zy = rotationMatrix.m12;
-		double zz = rotationMatrix.m22;
-
-		double sqrtX = Math.sqrt(xx * xx + xz * xz);
-		sqrtX = (sqrtX < 1 ? sqrtX : 1);
-		double sqrtZ = Math.sqrt(zx * zx + zz * zz);
-		sqrtZ = (sqrtZ < 1 ? sqrtZ : 1);
-
-		rotationYaw = (float)Math.atan2(zx, zz) * 180F / 3.14159265F;
-		rotationPitch = -(float)Math.atan2(zy, sqrtZ) * 180F / 3.14159265F;
-
-		Matrix4f rollOnlyMatrix = rotationMatrix.rotate(rotationYaw * 3.14159265F / 180F, new Vector3f(0F, 1F, 0F), null).rotate(rotationPitch * 3.14159265F / 180F, new Vector3f(1F, 0F, 0F));
-
-		rotationRoll = (float)Math.atan2(rollOnlyMatrix.m10, rollOnlyMatrix.m00) * 180F / 3.14159265F;
-		*/
     }
 
     public RotatedAxes findLocalAxesGlobally(RotatedAxes in) {

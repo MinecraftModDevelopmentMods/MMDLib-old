@@ -31,8 +31,8 @@
  */
 package com.mcmoddev.lib.client.vector;
 
-import com.mcmoddev.lib.api.vector.ReadableVector2f;
-import com.mcmoddev.lib.api.vector.WritableVector2f;
+import com.mcmoddev.lib.common.vector.ReadableVector2f;
+import com.mcmoddev.lib.common.vector.WritableVector2f;
 
 import java.io.Serializable;
 import java.nio.FloatBuffer;

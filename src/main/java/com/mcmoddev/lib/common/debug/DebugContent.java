@@ -1,4 +1,4 @@
-package com.mcmoddev.lib.debug;
+package com.mcmoddev.lib.common.debug;
 
 import com.mcmoddev.lib.item.ItemTestArmor;
 

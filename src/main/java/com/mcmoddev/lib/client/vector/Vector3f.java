@@ -31,8 +31,8 @@
  */
 package com.mcmoddev.lib.client.vector;
 
-import com.mcmoddev.lib.api.vector.ReadableVector3f;
-import com.mcmoddev.lib.api.vector.WritableVector3f;
+import com.mcmoddev.lib.common.vector.ReadableVector3f;
+import com.mcmoddev.lib.common.vector.WritableVector3f;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.Vec3d;
 

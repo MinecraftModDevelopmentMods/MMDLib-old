@@ -29,33 +29,32 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.mcmoddev.lib.api.vector;
-
-import com.mcmoddev.lib.client.vector.Vector;
-
-import java.nio.FloatBuffer;
+package com.mcmoddev.lib.common.vector;
 
 /**
- * @author foo
+ * Writable interface to Vector4fs
+ *
+ * @author $author$
+ * @version $revision$
+ *          $Id$
  */
-public interface ReadableVector {
-    /**
-     * @return the length of the vector
-     */
-    float length();
+public interface WritableVector4f extends WritableVector3f {
 
     /**
-     * @return the length squared of the vector
+     * Set the W value
+     *
+     * @param w
      */
-    float lengthSquared();
+    void setW(float w);
 
     /**
-     * Store this vector in a FloatBuffer
+     * Set the X,Y,Z,W values
      *
-     * @param buf
-     *         The buffer to store it in, at the current position
-     *
-     * @return this
+     * @param x
+     * @param y
+     * @param z
+     * @param w
      */
-    Vector store(FloatBuffer buf);
+    void set(float x, float y, float z, float w);
+
 }

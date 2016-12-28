@@ -257,7 +257,7 @@ public class Bone {
             positionVector = new Vec3d(0, 0, parentNode.length);
             parentNode.setVectorRotations(positionVector);
             /*positionVector.xCoord += parentNode.positionVector.xCoord;
-			positionVector.yCoord += parentNode.positionVector.yCoord;
+            positionVector.yCoord += parentNode.positionVector.yCoord;
 			positionVector.zCoord += parentNode.positionVector.zCoord;*/
             positionVector.add(parentNode.positionVector);
         }
@@ -522,7 +522,7 @@ public class Bone {
         zVec = yz;
 
         /*vector.xCoord = xVec;
-		vector.yCoord = yVec;
+        vector.yCoord = yVec;
         vector.zCoord = zVec;*/
         vector = new Vec3d(xVec, yVec, zVec);
     }
