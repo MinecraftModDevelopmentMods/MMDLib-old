@@ -1,5 +1,7 @@
 package com.mcmoddev.lib.common;
 
+import com.mcmoddev.lib.MMDLib;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,9 +12,10 @@ import java.util.Random;
  * percentage for that outcome being selected is then equal to it's weight out of the total
  * weight of all entires.
  *
- * @author Tyler Hancock (Darkhax)
+ * @param <T>
+ *         The type of object to register.
  *
- * @param <T> The type of object to register.
+ * @author Tyler Hancock (Darkhax)
  */
 public class WeightedSelector<T> {
 
@@ -35,17 +38,16 @@ public class WeightedSelector<T> {
      * Default constructor.
      */
     public WeightedSelector() {
-
-        this(new Random());
+        this(MMDLib.RANDOM);
     }
 
     /**
      * Base constructor.
      *
-     * @param random The random instance to use for generating objects.
+     * @param random
+     *         The random instance to use for generating objects.
      */
     public WeightedSelector(Random random) {
-
         this.random = random;
     }
 
@@ -53,12 +55,14 @@ public class WeightedSelector<T> {
      * Adds an entry to the list. The entry is created from the value and weight passed. Only
      * serves as a quality of life method.
      *
-     * @param value The value to register.
-     * @param weight The weight of the entry.
+     * @param value
+     *         The value to register.
+     * @param weight
+     *         The weight of the entry.
+     *
      * @return Whether or not the entry was added successfully.
      */
-    public boolean addEntry (T value, int weight) {
-
+    public boolean addEntry(T value, int weight) {
         return this.addEntry(new WeightedEntry<>(value, weight));
     }
 
@@ -66,11 +70,12 @@ public class WeightedSelector<T> {
      * Adds an entry to the entry list. If the entry is added successfully, the total will
      * automatically update.
      *
-     * @param entry The entry to add to the entry pool.
+     * @param entry
+     *         The entry to add to the entry pool.
+     *
      * @return Whether or not the entry was added successfully.
      */
-    public boolean addEntry (WeightedEntry<T> entry) {
-
+    public boolean addEntry(WeightedEntry<T> entry) {
         final boolean added = this.entries.add(entry);
 
         if (added)
@@ -83,11 +88,12 @@ public class WeightedSelector<T> {
      * Removes an entry from the entry list. If the entry is removed successfully, the total
      * will automatically update.
      *
-     * @param entry The entry to remove from the entry pool.
+     * @param entry
+     *         The entry to remove from the entry pool.
+     *
      * @return Whether or not the entry was removed successfully.
      */
-    public boolean removeEntry (WeightedEntry<T> entry) {
-
+    public boolean removeEntry(WeightedEntry<T> entry) {
         final boolean removed = this.entries.remove(entry);
 
         if (removed)
@@ -103,8 +109,7 @@ public class WeightedSelector<T> {
      *
      * @return A list of weighted entries.
      */
-    public List<WeightedEntry<T>> getEntries () {
-
+    public List<WeightedEntry<T>> getEntries() {
         return this.entries;
     }
 
@@ -114,8 +119,7 @@ public class WeightedSelector<T> {
      *
      * @return The weighted entry that was selected.
      */
-    public WeightedEntry<T> getRandomEntry () {
-
+    public WeightedEntry<T> getRandomEntry() {
         final int selected = this.random.nextInt(this.totalWeight);
         int current = 0;
 
@@ -136,8 +140,7 @@ public class WeightedSelector<T> {
      *
      * @return The new total weight.
      */
-    public int updateTotal () {
-
+    public int updateTotal() {
         int total = 0;
 
         for (final WeightedEntry<T> entry : this.entries)
@@ -161,12 +164,13 @@ public class WeightedSelector<T> {
         /**
          * Constructs a new WeightedEntry using a basic entry and weight parameter.
          *
-         * @param entry The outcome to represent with the entry.
-         * @param weight The weight of the entry. Entries with a higher weight have a higher
-         *        likelihood of being selected.
+         * @param entry
+         *         The outcome to represent with the entry.
+         * @param weight
+         *         The weight of the entry. Entries with a higher weight have a higher
+         *         likelihood of being selected.
          */
         public WeightedEntry(T entry, int weight) {
-
             this.entry = entry;
             this.weight = weight;
         }
@@ -176,8 +180,7 @@ public class WeightedSelector<T> {
          *
          * @return The outcome represented by the entry.
          */
-        public T getEntry () {
-
+        public T getEntry() {
             return this.entry;
         }
 
@@ -186,8 +189,7 @@ public class WeightedSelector<T> {
          *
          * @return The weight of the entry.
          */
-        public int getWeight () {
-
+        public int getWeight() {
             return this.weight;
         }
     }

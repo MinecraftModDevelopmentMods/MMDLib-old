@@ -1,9 +1,9 @@
 package com.mcmoddev.lib;
 
+import com.mcmoddev.lib.common.debug.DebugContent;
 import com.mcmoddev.lib.config.ConfigurationHandler;
 import com.mcmoddev.lib.config.LibConfig;
 import com.mcmoddev.lib.handler.ShieldHandler;
-import com.mcmoddev.lib.common.debug.DebugContent;
 import com.mcmoddev.lib.util.Platform;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -14,6 +14,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Random;
 
 @Mod(
         modid = MMDLib.MOD_ID,
@@ -26,6 +28,7 @@ public class MMDLib {
     public static final String MOD_NAME = "MMDLib";
     public static final String VERSION = "0.0.1";
     public static final Logger LOG = LogManager.getLogger(MOD_NAME);
+    public static Random RANDOM = new Random();
 
     @EventHandler
     public void construction(FMLConstructionEvent event) {

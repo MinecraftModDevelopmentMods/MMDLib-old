@@ -3,7 +3,7 @@ package com.mcmoddev.lib.common;
 public class OreDictionaryEntries {
 
     // Variant Arrays
-    public static final String[] WOOD_TYPES = new String[] { "Oak", "Spruce", "Birch", "Jungle", "Acacia", "DarkOak" };
+    public static final String[] WOOD_TYPES = new String[]{"Oak", "Spruce", "Birch", "Jungle", "Acacia", "DarkOak"};
 
     // Wooden Stuff
     public static final String LOG_WOOD = "logWood";
