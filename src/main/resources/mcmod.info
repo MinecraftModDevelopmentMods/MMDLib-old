@@ -7,8 +7,8 @@
     "mcversion": "${mcversion}",
     "url": "",
     "updateUrl": "",
-    "authorList": [],
-    "credits": "",
+    "authorList": ["TheCodedOne","DarkHax","Ferdinand (FEX___96)"],
+    "credits": "Ferdinand (FEX___96) for his Turbo Model Thingy code.",
     "logoFile": "",
     "screenshots": [],
     "dependencies": []
