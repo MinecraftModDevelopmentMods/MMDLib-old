@@ -1,8 +1,7 @@
 package com.mcmoddev.lib.common.item;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.item.ItemStack;
 
 public interface IItemStackQuery {
-    boolean matches(World world, BlockPos pos);
+    boolean matches(ItemStack itemStack);
 }
