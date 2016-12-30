@@ -529,7 +529,7 @@ public class Bone {
 
     protected void addVector(Vec3d destVec, Vec3d srcVec) {
         destVec.add(srcVec);
-		/*destVec.xCoord += srcVec.xCoord;
+        /*destVec.xCoord += srcVec.xCoord;
 		destVec.yCoord += srcVec.yCoord;
 		destVec.zCoord += srcVec.zCoord;*/
     }

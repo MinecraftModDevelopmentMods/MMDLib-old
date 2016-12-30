@@ -46,7 +46,7 @@ public class PositionTransformVertex extends PositionTextureVertex {
             weight += transformGroups.get(i).getWeight();
         }
         /*vector3D.xCoord = 0;
-		vector3D.yCoord = 0;
+        vector3D.yCoord = 0;
 		vector3D.zCoord = 0;*/
         vector3D = new Vec3d(0, 0, 0);
 
