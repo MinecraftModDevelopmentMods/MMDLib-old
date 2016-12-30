@@ -3,6 +3,10 @@ package com.mcmoddev.lib.client.model;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+* @Author Ferdinand (FEX___96)
+* Converter to use Flansmod-Type vehicle models.
+*/
 @SideOnly(Side.CLIENT)
 public class ModelConverter extends ModelBase {
 
