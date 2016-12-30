@@ -3,6 +3,10 @@ package com.mcmoddev.lib.client.model;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+* @Author Ferdinand (FEX___96)
+* Similar to 'FlansMod'-type Models, for a fast convert.
+*/
 @SideOnly(Side.CLIENT)
 public class ModelBase extends net.minecraft.client.model.ModelBase {
 
