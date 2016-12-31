@@ -3,6 +3,8 @@ package com.mcmoddev.lib.client.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * An implementation of GuiButton which uses an image rather than text. By default the image
@@ -12,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
  *
  * @author Tyler Hancock (Darkhax)
  */
+@SideOnly(Side.CLIENT)
 public class GuiButtonGraphical extends GuiButton {
 
     /**
