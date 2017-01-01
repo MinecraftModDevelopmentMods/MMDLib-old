@@ -11,9 +11,9 @@ public class DuplicateObjectsException extends EnhancedRuntimeException {
     }
 
     @Override
-    protected void printStackTrace(WrappedPrintStream stream) {
+    protected void printStackTrace (WrappedPrintStream stream) {
         stream.println("Duplicate Objects:");
-        stream.println(String.format("\t%s", objects.toString()));
+        stream.println(String.format("\t%s", this.objects.toString()));
         stream.println("");
     }
 }

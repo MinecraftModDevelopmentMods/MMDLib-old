@@ -8,8 +8,7 @@ import net.minecraftforge.common.property.IUnlistedProperty;
  * be stored by this property is the result of {@link Object#toString()}. If more complexity is
  * needed, a new property should be created.
  *
- * @param <T>
- *         The type of object being handled by the property.
+ * @param <T> The type of object being handled by the property.
  *
  * @author Tyler Hancock (Darkhax)
  */
@@ -19,7 +18,6 @@ public class PropertyObject<T> implements IUnlistedProperty<T> {
      * The name of the property.
      */
     private final String name;
-
     /**
      * The type of class held by it.
      */
@@ -28,38 +26,31 @@ public class PropertyObject<T> implements IUnlistedProperty<T> {
     /**
      * Constructor for the generic unlisted property.
      *
-     * @param name
-     *         The name for the property.
-     * @param type
-     *         The class for the type of object being handled.
+     * @param name The name for the property.
+     * @param type The class for the type of object being handled.
      */
     public PropertyObject(String name, Class<T> type) {
-
         this.name = name;
         this.type = type;
     }
 
     @Override
-    public String getName() {
-
+    public String getName () {
         return this.name;
     }
 
     @Override
-    public Class<T> getType() {
-
+    public Class<T> getType () {
         return this.type;
     }
 
     @Override
-    public boolean isValid(T object) {
-
+    public boolean isValid (T object) {
         return true;
     }
 
     @Override
-    public String valueToString(T object) {
-
+    public String valueToString (T object) {
         return object.toString();
     }
 }

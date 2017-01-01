@@ -10,7 +10,6 @@ import net.minecraft.item.EnumDyeColor;
  * @author Tyler Hancock (Darkhax)
  */
 public enum VanillaColor {
-
     BLACK("Black", new Color(25, 25, 25), EnumDyeColor.BLACK),
     RED("Red", new Color(153, 51, 51), EnumDyeColor.RED),
     GREEN("Green", new Color(102, 127, 51), EnumDyeColor.GREEN),
@@ -32,17 +31,14 @@ public enum VanillaColor {
      * The english name for the color.
      */
     private String name;
-
     /**
      * An instance of the color as an AWT color.
      */
     private Color awtColor;
-
     /**
      * The EnumDyeColor counterpart.
      */
     private EnumDyeColor color;
-
     /**
      * The RGB as a packed integer.
      */
@@ -58,7 +54,6 @@ public enum VanillaColor {
      * @param color The EnumDyeColor counterpart.
      */
     VanillaColor(String name, Color awtColor, EnumDyeColor color) {
-
         this.name = name;
         this.awtColor = awtColor;
         this.color = color;
@@ -71,7 +66,6 @@ public enum VanillaColor {
      * @return The name for the color.
      */
     public String getName () {
-
         return this.name;
     }
 
@@ -81,7 +75,6 @@ public enum VanillaColor {
      * @return String A string which represents the associated dye within the OreDictionary.
      */
     public String getDyeName () {
-
         return "dye" + this.name;
     }
 
@@ -92,7 +85,6 @@ public enum VanillaColor {
      *         OreDictionary.
      */
     public String getGlassPaneName () {
-
         return "paneGlass" + this.name;
     }
 
@@ -103,7 +95,6 @@ public enum VanillaColor {
      *         OreDictionary.
      */
     public String getGlassBlockName () {
-
         return "blockGlass" + this.name;
     }
 
@@ -113,7 +104,6 @@ public enum VanillaColor {
      * @return An AWT Color object.
      */
     public Color getAWTColor () {
-
         return this.awtColor;
     }
 
@@ -123,7 +113,6 @@ public enum VanillaColor {
      * @return The EnumDyeColor counterpart.
      */
     public EnumDyeColor getColor () {
-
         return this.color;
     }
 
@@ -133,7 +122,6 @@ public enum VanillaColor {
      * @return The packed RGB value.
      */
     public int getPackedColor () {
-
         return this.packedColor;
     }
 
@@ -146,11 +134,9 @@ public enum VanillaColor {
      *         found, it will be null.
      */
     public static VanillaColor getColorByName (String name) {
-
         for (final VanillaColor color : VanillaColor.values())
             if (color.name.equalsIgnoreCase(name))
                 return color;
-
         return null;
     }
 }

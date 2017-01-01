@@ -6,7 +6,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public abstract class TransformGroup {
-    public abstract double getWeight();
 
-    public abstract Vec3d doTransformation(PositionTransformVertex vertex);
+    public abstract double getWeight ();
+
+    public abstract Vec3d doTransformation (PositionTransformVertex vertex);
 }

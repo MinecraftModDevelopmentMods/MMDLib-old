@@ -20,7 +20,6 @@ public class ModUtils {
      * @return The name of the mod which registered the object.
      */
     public static String getModName (IForgeRegistryEntry.Impl<?> registerable) {
-
         final String modID = registerable.getRegistryName().getResourceDomain();
         final ModContainer mod = getModContainer(modID);
         return mod != null ? mod.getName() : modID.equalsIgnoreCase("minecraft") ? "Minecraft" : "Unknown";
@@ -34,22 +33,15 @@ public class ModUtils {
      * @return The name of the mod which registered the entity.
      */
     public static String getModName (Entity entity) {
-
         if (entity == null)
             return "Unknown";
-
         final EntityRegistration reg = EntityRegistry.instance().lookupModSpawn(entity.getClass(), false);
-
         if (reg != null) {
-
             final ModContainer mod = reg.getContainer();
-
             if (mod != null)
                 return mod.getName();
-
             return "Unknown";
         }
-
         return "Minecraft";
     }
 
@@ -60,7 +52,6 @@ public class ModUtils {
      * @return The {@link ModContainer} that was registered using the passed id.
      */
     public static ModContainer getModContainer (String modID) {
-
         return Loader.instance().getIndexedModList().get(modID);
     }
 
@@ -71,7 +62,6 @@ public class ModUtils {
      * @return The name of the mod.
      */
     public static String getModName (String modId) {
-
         final ModContainer mod = getModContainer(modId);
         return mod != null ? mod.getName() : modId;
     }
@@ -86,11 +76,9 @@ public class ModUtils {
      */
     @SideOnly(Side.CLIENT)
     public static CreativeTabs getTabFromLabel (String label) {
-
         for (final CreativeTabs tab : CreativeTabs.CREATIVE_TAB_ARRAY)
             if (tab.getTabLabel().equalsIgnoreCase(label))
                 return tab;
-
         return null;
     }
 }

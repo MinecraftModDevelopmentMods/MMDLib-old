@@ -1,9 +1,10 @@
 package com.mcmoddev.lib.config;
 
-import com.mcmoddev.lib.MMDLib;
-import net.minecraft.util.ResourceLocation;
-
 import java.io.File;
+
+import com.mcmoddev.lib.MMDLib;
+
+import net.minecraft.util.ResourceLocation;
 
 public class LibConfig extends MMDConfig {
 
@@ -14,7 +15,7 @@ public class LibConfig extends MMDConfig {
     }
 
     @Override
-    public ResourceLocation getIdentifier() {
+    public ResourceLocation getIdentifier () {
         return IDENTITY;
     }
 }

@@ -31,17 +31,16 @@
  */
 package com.mcmoddev.lib.client.vector;
 
-import com.mcmoddev.lib.common.vector.ReadableVector;
-
 import java.io.Serializable;
 import java.nio.FloatBuffer;
+
+import com.mcmoddev.lib.common.vector.ReadableVector;
 
 /**
  * Base class for vectors.
  *
  * @author cix_foo <cix_foo@users.sourceforge.net>
- * @version $Revision$
- *          $Id$
+ * @version $Revision$ $Id$
  */
 public abstract class Vector implements Serializable, ReadableVector {
 
@@ -56,71 +55,63 @@ public abstract class Vector implements Serializable, ReadableVector {
      * @return the length of the vector
      */
     @Override
-    public final float length() {
-        return (float) Math.sqrt(lengthSquared());
+    public final float length () {
+        return (float) Math.sqrt(this.lengthSquared());
     }
-
 
     /**
      * @return the length squared of the vector
      */
     @Override
-    public abstract float lengthSquared();
+    public abstract float lengthSquared ();
 
     /**
      * Load this vector from a FloatBuffer
      *
-     * @param buf
-     *         The buffer to load it from, at the current position
+     * @param buf The buffer to load it from, at the current position
      *
      * @return this
      */
-    public abstract Vector load(FloatBuffer buf);
+    public abstract Vector load (FloatBuffer buf);
 
     /**
      * Negate a vector
      *
      * @return this
      */
-    public abstract Vector negate();
-
+    public abstract Vector negate ();
 
     /**
      * Normalise this vector
      *
      * @return this
      */
-    public final Vector normalise() {
-        float len = length();
+    public final Vector normalise () {
+        final float len = this.length();
         if (len != 0.0f) {
-            float l = 1.0f / len;
-            return scale(l);
-        } else
+            final float l = 1.0f / len;
+            return this.scale(l);
+        }
+        else
             throw new IllegalStateException("Zero length vector");
     }
-
 
     /**
      * Store this vector in a FloatBuffer
      *
-     * @param buf
-     *         The buffer to store it in, at the current position
+     * @param buf The buffer to store it in, at the current position
      *
      * @return this
      */
     @Override
-    public abstract Vector store(FloatBuffer buf);
-
+    public abstract Vector store (FloatBuffer buf);
 
     /**
      * Scale this vector
      *
-     * @param scale
-     *         The scale factor
+     * @param scale The scale factor
      *
      * @return this
      */
-    public abstract Vector scale(float scale);
-
-
+    public abstract Vector scale (float scale);
 }

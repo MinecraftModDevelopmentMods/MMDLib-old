@@ -1,6 +1,7 @@
 package com.mcmoddev.lib.client;
 
 public class Radian {
+
     public static final float PI = (float) Math.PI;
     private static final float degreeToRadian = PI / 180;
     public static final float d5 = fromDegree(5);
@@ -20,12 +21,11 @@ public class Radian {
     public static final float d240 = fromDegree(240);
     private static final float radianToDegree = 180 / PI;
 
-    public static float fromDegree(float degree) {
+    public static float fromDegree (float degree) {
         return degree * degreeToRadian;
     }
 
-    public static float toDegreee(float radian) {
+    public static float toDegreee (float radian) {
         return radian * radianToDegree;
     }
 }
-

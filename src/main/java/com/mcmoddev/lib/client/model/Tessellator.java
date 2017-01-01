@@ -1,15 +1,16 @@
 package com.mcmoddev.lib.client.model;
 
-import net.minecraft.client.renderer.GLAllocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
-
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
 import java.util.Arrays;
+
+import org.lwjgl.opengl.GL11;
+
+import net.minecraft.client.renderer.GLAllocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * @Author Ferdinand (FEX___96)
@@ -31,37 +32,37 @@ public class Tessellator extends net.minecraft.client.renderer.Tessellator {
         super(2097152);
     }
 
-    public static Tessellator getInstance() {
+    public static Tessellator getInstance () {
         return INSTANCE;
     }
 
-    public void startDrawing(int i) {
-        if (!drawing) {
-            drawing = true;
-            dm = i;
-            in = ht = false;
-            reset();
+    public void startDrawing (int i) {
+        if (!this.drawing) {
+            this.drawing = true;
+            this.dm = i;
+            this.in = this.ht = false;
+            this.reset();
         }
     }
 
     @Override
-    public void draw() {
-        if (drawing) {
-            drawing = false;
+    public void draw () {
+        if (this.drawing) {
+            this.drawing = false;
             int o = 0;
-            while (o < verts) {
-                int vtc = Math.min(verts - o, 0x200000 >> 5);
+            while (o < this.verts) {
+                final int vtc = Math.min(this.verts - o, 0x200000 >> 5);
                 ibuf.clear();
-                ibuf.put(rb, o * 10, vtc * 10);
+                ibuf.put(this.rb, o * 10, vtc * 10);
                 bbuf.position(0);
                 bbuf.limit(vtc * 40);
                 o += vtc;
-                if (ht) {
+                if (this.ht) {
                     fbuf.position(3);
                     GL11.glTexCoordPointer(4, 40, fbuf);
                     GL11.glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
                 }
-                if (in) {
+                if (this.in) {
                     bbuf.position(32);
                     GL11.glNormalPointer(40, bbuf);
                     GL11.glEnableClientState(GL11.GL_NORMAL_ARRAY);
@@ -69,99 +70,94 @@ public class Tessellator extends net.minecraft.client.renderer.Tessellator {
                 fbuf.position(0);
                 GL11.glVertexPointer(3, 40, fbuf);
                 GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
-                GL11.glDrawArrays(dm, 0, vtc);
+                GL11.glDrawArrays(this.dm, 0, vtc);
                 GL11.glDisableClientState(GL11.GL_VERTEX_ARRAY);
-                if (ht) {
+                if (this.ht)
                     GL11.glDisableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
-                }
-                if (in) {
+                if (this.in)
                     GL11.glDisableClientState(GL11.GL_NORMAL_ARRAY);
-                }
             }
-            if (rbs > 0x20000 && rbi < (rbs << 3)) {
-                rbs = 0;
-                rb = null;
+            if (this.rbs > 0x20000 && this.rbi < this.rbs << 3) {
+                this.rbs = 0;
+                this.rb = null;
             }
-            reset();
+            this.reset();
             return;
         }
     }
 
-    private void reset() {
-        verts = rbi = vertices = 0;
-
+    private void reset () {
+        this.verts = this.rbi = this.vertices = 0;
         bbuf.clear();
     }
 
-    public void addVertex(double par1, double par3, double par5) {
-        if (rbi >= rbs - 40) {
-            if (rbs == 0) {
-                rbs = 0x10000;
-                rb = new int[rbs];
-            } else {
-                rbs *= 2;
-                rb = Arrays.copyOf(rb, rbs);
+    public void addVertex (double par1, double par3, double par5) {
+        if (this.rbi >= this.rbs - 40)
+            if (this.rbs == 0) {
+                this.rbs = 0x10000;
+                this.rb = new int[this.rbs];
             }
+            else {
+                this.rbs *= 2;
+                this.rb = Arrays.copyOf(this.rb, this.rbs);
+            }
+        if (this.ht) {
+            this.rb[this.rbi + 3] = Float.floatToRawIntBits((float) this.u);
+            this.rb[this.rbi + 4] = Float.floatToRawIntBits((float) this.v);
+            this.rb[this.rbi + 5] = Float.floatToRawIntBits(0.0F);
+            this.rb[this.rbi + 6] = Float.floatToRawIntBits((float) this.w);
         }
-        if (ht) {
-            rb[rbi + 3] = Float.floatToRawIntBits((float) u);
-            rb[rbi + 4] = Float.floatToRawIntBits((float) v);
-            rb[rbi + 5] = Float.floatToRawIntBits(0.0F);
-            rb[rbi + 6] = Float.floatToRawIntBits((float) w);
-        }
-        if (in) {
-            rb[rbi + 8] = n;
-        }
-        rb[rbi] = Float.floatToRawIntBits((float) (par1 + x_o));
-        rb[rbi + 1] = Float.floatToRawIntBits((float) (par3 + y_o));
-        rb[rbi + 2] = Float.floatToRawIntBits((float) (par5 + z_o));
-        rbi += 10;
-        verts++;
-        vertices++;
+        if (this.in)
+            this.rb[this.rbi + 8] = this.n;
+        this.rb[this.rbi] = Float.floatToRawIntBits((float) (par1 + this.x_o));
+        this.rb[this.rbi + 1] = Float.floatToRawIntBits((float) (par3 + this.y_o));
+        this.rb[this.rbi + 2] = Float.floatToRawIntBits((float) (par5 + this.z_o));
+        this.rbi += 10;
+        this.verts++;
+        this.vertices++;
     }
 
-    public void addVertexWithUV(double i, double j, double k, double l, double m) {
+    public void addVertexWithUV (double i, double j, double k, double l, double m) {
         this.setTextureUV(l, m);
         this.addVertex(i, j, k);
     }
 
-    public void addVertexWithUVW(double i, double j, double k, double l, double m, double n) {
+    public void addVertexWithUVW (double i, double j, double k, double l, double m, double n) {
         this.setTextureUVW(l, m, n);
         this.addVertex(i, j, k);
     }
 
-    public void setNormal(float x, float y, float z) {
-        in = true;
-        byte b0 = (byte) ((int) (x * 127.0F));
-        byte b1 = (byte) ((int) (y * 127.0F));
-        byte b2 = (byte) ((int) (z * 127.0F));
-        n = b0 & 255 | (b1 & 255) << 8 | (b2 & 255) << 16;
+    public void setNormal (float x, float y, float z) {
+        this.in = true;
+        final byte b0 = (byte) (int) (x * 127.0F);
+        final byte b1 = (byte) (int) (y * 127.0F);
+        final byte b2 = (byte) (int) (z * 127.0F);
+        this.n = b0 & 255 | (b1 & 255) << 8 | (b2 & 255) << 16;
     }
 
-    public void setTextureUV(double i, double j) {
+    public void setTextureUV (double i, double j) {
         this.ht = true;
         this.u = i;
         this.v = j;
         this.w = 1.0D;
     }
 
-    public void setTextureUVW(double i, double j, double k) {
+    public void setTextureUVW (double i, double j, double k) {
         this.ht = true;
         this.u = i;
         this.v = j;
         this.w = k;
     }
 
-    public void setTranslation(double x, double y, double z) {
-        x_o = x;
-        y_o = y;
-        z_o = z;
+    public void setTranslation (double x, double y, double z) {
+        this.x_o = x;
+        this.y_o = y;
+        this.z_o = z;
     }
 
-    public void addTranslation(float x, float y, float z) {
-        x_o += x;
-        y_o += y;
-        z_o += z;
+    public void addTranslation (float x, float y, float z) {
+        this.x_o += x;
+        this.y_o += y;
+        this.z_o += z;
     }
-
 }

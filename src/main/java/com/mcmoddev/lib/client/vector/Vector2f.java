@@ -31,24 +31,21 @@
  */
 package com.mcmoddev.lib.client.vector;
 
-import com.mcmoddev.lib.common.vector.ReadableVector2f;
-import com.mcmoddev.lib.common.vector.WritableVector2f;
-
 import java.io.Serializable;
 import java.nio.FloatBuffer;
+
+import com.mcmoddev.lib.common.vector.ReadableVector2f;
+import com.mcmoddev.lib.common.vector.WritableVector2f;
 
 /**
  * Holds a 2-tuple vector.
  *
  * @author cix_foo <cix_foo@users.sourceforge.net>
- * @version $Revision$
- *          $Id$
+ * @version $Revision$ $Id$
  */
-
 public class Vector2f extends Vector implements Serializable, ReadableVector2f, WritableVector2f {
 
     private static final long serialVersionUID = 1L;
-
     public float x, y;
 
     /**
@@ -62,42 +59,37 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
      * Constructor
      */
     public Vector2f(ReadableVector2f src) {
-        set(src);
+        this.set(src);
     }
 
     /**
      * Constructor
      */
     public Vector2f(float x, float y) {
-        set(x, y);
+        this.set(x, y);
     }
 
     /**
-     * The dot product of two vectors is calculated as
-     * v1.x * v2.x + v1.y * v2.y + v1.z * v2.z
+     * The dot product of two vectors is calculated as v1.x * v2.x + v1.y * v2.y + v1.z * v2.z
      *
-     * @param left
-     *         The LHS vector
-     * @param right
-     *         The RHS vector
+     * @param left The LHS vector
+     * @param right The RHS vector
      *
      * @return left dot right
      */
-    public static float dot(Vector2f left, Vector2f right) {
+    public static float dot (Vector2f left, Vector2f right) {
         return left.x * right.x + left.y * right.y;
     }
 
     /**
      * Calculate the angle between two vectors, in radians
      *
-     * @param a
-     *         A vector
-     * @param b
-     *         The other vector
+     * @param a A vector
+     * @param b The other vector
      *
      * @return the angle between the two vectors, in radians
      */
-    public static float angle(Vector2f a, Vector2f b) {
+    public static float angle (Vector2f a, Vector2f b) {
         float dls = dot(a, b) / (a.length() * b.length());
         if (dls < -1f)
             dls = -1f;
@@ -107,19 +99,15 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
     }
 
     /**
-     * Add a vector to another vector and place the result in a destination
-     * vector.
+     * Add a vector to another vector and place the result in a destination vector.
      *
-     * @param left
-     *         The LHS vector
-     * @param right
-     *         The RHS vector
-     * @param dest
-     *         The destination vector, or null if a new vector is to be created
+     * @param left The LHS vector
+     * @param right The RHS vector
+     * @param dest The destination vector, or null if a new vector is to be created
      *
      * @return the sum of left and right in dest
      */
-    public static Vector2f add(Vector2f left, Vector2f right, Vector2f dest) {
+    public static Vector2f add (Vector2f left, Vector2f right, Vector2f dest) {
         if (dest == null)
             return new Vector2f(left.x + right.x, left.y + right.y);
         else {
@@ -129,19 +117,15 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
     }
 
     /**
-     * Subtract a vector from another vector and place the result in a destination
-     * vector.
+     * Subtract a vector from another vector and place the result in a destination vector.
      *
-     * @param left
-     *         The LHS vector
-     * @param right
-     *         The RHS vector
-     * @param dest
-     *         The destination vector, or null if a new vector is to be created
+     * @param left The LHS vector
+     * @param right The RHS vector
+     * @param dest The destination vector, or null if a new vector is to be created
      *
      * @return left minus right in dest
      */
-    public static Vector2f sub(Vector2f left, Vector2f right, Vector2f dest) {
+    public static Vector2f sub (Vector2f left, Vector2f right, Vector2f dest) {
         if (dest == null)
             return new Vector2f(left.x - right.x, left.y - right.y);
         else {
@@ -150,11 +134,12 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.lwjgl.util.vector.WritableVector2f#set(float, float)
      */
     @Override
-    public void set(float x, float y) {
+    public void set (float x, float y) {
         this.x = x;
         this.y = y;
     }
@@ -162,14 +147,13 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
     /**
      * Load from another Vector2f
      *
-     * @param src
-     *         The source vector
+     * @param src The source vector
      *
      * @return this
      */
-    public Vector2f set(ReadableVector2f src) {
-        x = src.getX();
-        y = src.getY();
+    public Vector2f set (ReadableVector2f src) {
+        this.x = src.getX();
+        this.y = src.getY();
         return this;
     }
 
@@ -177,21 +161,19 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
      * @return the length squared of the vector
      */
     @Override
-    public float lengthSquared() {
-        return x * x + y * y;
+    public float lengthSquared () {
+        return this.x * this.x + this.y * this.y;
     }
 
     /**
      * Translate a vector
      *
-     * @param x
-     *         The translation in x
-     * @param y
-     *         the translation in y
+     * @param x The translation in x
+     * @param y the translation in y
      *
      * @return this
      */
-    public Vector2f translate(float x, float y) {
+    public Vector2f translate (float x, float y) {
         this.x += x;
         this.y += y;
         return this;
@@ -203,104 +185,97 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
      * @return this
      */
     @Override
-    public Vector negate() {
-        x = -x;
-        y = -y;
+    public Vector negate () {
+        this.x = -this.x;
+        this.y = -this.y;
         return this;
     }
 
     /**
      * Negate a vector and place the result in a destination vector.
      *
-     * @param dest
-     *         The destination vector or null if a new vector is to be created
+     * @param dest The destination vector or null if a new vector is to be created
      *
      * @return the negated vector
      */
-    public Vector2f negate(Vector2f dest) {
+    public Vector2f negate (Vector2f dest) {
         if (dest == null)
             dest = new Vector2f();
-        dest.x = -x;
-        dest.y = -y;
+        dest.x = -this.x;
+        dest.y = -this.y;
         return dest;
     }
 
     /**
      * Normalise this vector and place the result in another vector.
      *
-     * @param dest
-     *         The destination vector, or null if a new vector is to be created
+     * @param dest The destination vector, or null if a new vector is to be created
      *
      * @return the normalised vector
      */
-    public Vector2f normalise(Vector2f dest) {
-        float l = length();
-
+    public Vector2f normalise (Vector2f dest) {
+        final float l = this.length();
         if (dest == null)
-            dest = new Vector2f(x / l, y / l);
+            dest = new Vector2f(this.x / l, this.y / l);
         else
-            dest.set(x / l, y / l);
-
+            dest.set(this.x / l, this.y / l);
         return dest;
     }
 
     /**
      * Store this vector in a FloatBuffer
      *
-     * @param buf
-     *         The buffer to store it in, at the current position
+     * @param buf The buffer to store it in, at the current position
      *
      * @return this
      */
     @Override
-    public Vector store(FloatBuffer buf) {
-        buf.put(x);
-        buf.put(y);
+    public Vector store (FloatBuffer buf) {
+        buf.put(this.x);
+        buf.put(this.y);
         return this;
     }
 
     /**
      * Load this vector from a FloatBuffer
      *
-     * @param buf
-     *         The buffer to load it from, at the current position
+     * @param buf The buffer to load it from, at the current position
      *
      * @return this
      */
     @Override
-    public Vector load(FloatBuffer buf) {
-        x = buf.get();
-        y = buf.get();
+    public Vector load (FloatBuffer buf) {
+        this.x = buf.get();
+        this.y = buf.get();
         return this;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.lwjgl.vector.Vector#scale(float)
      */
     @Override
-    public Vector scale(float scale) {
-
-        x *= scale;
-        y *= scale;
-
+    public Vector scale (float scale) {
+        this.x *= scale;
+        this.y *= scale;
         return this;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see java.lang.Object#toString()
      */
     @Override
-    public String toString() {
-
-        return "Vector2f[" + x + ", " + y + ']';
+    public String toString () {
+        return "Vector2f[" + this.x + ", " + this.y + ']';
     }
 
     /**
      * @return x
      */
     @Override
-    public final float getX() {
-        return x;
+    public final float getX () {
+        return this.x;
     }
 
     /**
@@ -309,7 +284,7 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
      * @param x
      */
     @Override
-    public final void setX(float x) {
+    public final void setX (float x) {
         this.x = x;
     }
 
@@ -317,8 +292,8 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
      * @return y
      */
     @Override
-    public final float getY() {
-        return y;
+    public final float getY () {
+        return this.y;
     }
 
     /**
@@ -327,8 +302,7 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
      * @param y
      */
     @Override
-    public final void setY(float y) {
+    public final void setY (float y) {
         this.y = y;
     }
-
 }

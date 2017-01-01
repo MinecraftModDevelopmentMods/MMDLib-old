@@ -20,12 +20,10 @@ public class WeightedSelector<T> {
      * A random object used only for weighted selectors.
      */
     private final Random random;
-
     /**
      * The list of entries held by the selector.
      */
     private final List<WeightedEntry<T>> entries = new ArrayList<>();
-
     /**
      * The total weight of all entries.
      */
@@ -35,7 +33,6 @@ public class WeightedSelector<T> {
      * Default constructor.
      */
     public WeightedSelector() {
-
         this(new Random());
     }
 
@@ -45,7 +42,6 @@ public class WeightedSelector<T> {
      * @param random The random instance to use for generating objects.
      */
     public WeightedSelector(Random random) {
-
         this.random = random;
     }
 
@@ -58,7 +54,6 @@ public class WeightedSelector<T> {
      * @return Whether or not the entry was added successfully.
      */
     public boolean addEntry (T value, int weight) {
-
         return this.addEntry(new WeightedEntry<>(value, weight));
     }
 
@@ -70,12 +65,9 @@ public class WeightedSelector<T> {
      * @return Whether or not the entry was added successfully.
      */
     public boolean addEntry (WeightedEntry<T> entry) {
-
         final boolean added = this.entries.add(entry);
-
         if (added)
             this.totalWeight += entry.getWeight();
-
         return added;
     }
 
@@ -87,12 +79,9 @@ public class WeightedSelector<T> {
      * @return Whether or not the entry was removed successfully.
      */
     public boolean removeEntry (WeightedEntry<T> entry) {
-
         final boolean removed = this.entries.remove(entry);
-
         if (removed)
             this.totalWeight -= entry.getWeight();
-
         return removed;
     }
 
@@ -104,7 +93,6 @@ public class WeightedSelector<T> {
      * @return A list of weighted entries.
      */
     public List<WeightedEntry<T>> getEntries () {
-
         return this.entries;
     }
 
@@ -115,18 +103,13 @@ public class WeightedSelector<T> {
      * @return The weighted entry that was selected.
      */
     public WeightedEntry<T> getRandomEntry () {
-
         final int selected = this.random.nextInt(this.totalWeight);
         int current = 0;
-
         for (final WeightedEntry<T> entry : this.entries) {
-
             current += entry.weight;
-
             if (selected < current)
                 return entry;
         }
-
         return null;
     }
 
@@ -137,12 +120,9 @@ public class WeightedSelector<T> {
      * @return The new total weight.
      */
     public int updateTotal () {
-
         int total = 0;
-
         for (final WeightedEntry<T> entry : this.entries)
             total += entry.getWeight();
-
         return total;
     }
 
@@ -152,7 +132,6 @@ public class WeightedSelector<T> {
          * The outcome being represented by the entry.
          */
         private final T entry;
-
         /**
          * The weight of the entry.
          */
@@ -166,7 +145,6 @@ public class WeightedSelector<T> {
          *        likelihood of being selected.
          */
         public WeightedEntry(T entry, int weight) {
-
             this.entry = entry;
             this.weight = weight;
         }
@@ -177,7 +155,6 @@ public class WeightedSelector<T> {
          * @return The outcome represented by the entry.
          */
         public T getEntry () {
-
             return this.entry;
         }
 
@@ -187,7 +164,6 @@ public class WeightedSelector<T> {
          * @return The weight of the entry.
          */
         public int getWeight () {
-
             return this.weight;
         }
     }
