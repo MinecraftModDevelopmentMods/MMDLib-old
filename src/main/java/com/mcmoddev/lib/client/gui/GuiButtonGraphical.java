@@ -35,36 +35,28 @@ public class GuiButtonGraphical extends GuiButton {
     /**
      * Constructor for a basic graphical button.
      *
-     * @param id
-     *         The id to assign the button. This id is specific to the GUI instance.
-     * @param x
-     *         The X position for the button.
-     * @param y
-     *         The Y position for the button.
-     * @param texture
-     *         The image to be drawn on the button. This should be 20x20.
+     * @param id The id to assign the button. This id is specific to the GUI instance.
+     * @param x The X position for the button.
+     * @param y The Y position for the button.
+     * @param texture The image to be drawn on the button. This should be 20x20.
      */
     public GuiButtonGraphical(int id, int x, int y, ResourceLocation texture) {
+
         this(id, x, y, texture, 20, 20);
     }
 
     /**
      * Constructor for a graphical button.
      *
-     * @param id
-     *         The id to assign the button. This id is specific to the GUI instance.
-     * @param x
-     *         The X position for the button.
-     * @param y
-     *         The Y position for the button.
-     * @param texture
-     *         The image to be drawn on the button.
-     * @param textureWidth
-     *         The width of the texture in pixels.
-     * @param textureHeight
-     *         The height of the texture in pixels.
+     * @param id The id to assign the button. This id is specific to the GUI instance.
+     * @param x The X position for the button.
+     * @param y The Y position for the button.
+     * @param texture The image to be drawn on the button.
+     * @param textureWidth The width of the texture in pixels.
+     * @param textureHeight The height of the texture in pixels.
      */
     public GuiButtonGraphical(int id, int x, int y, ResourceLocation texture, int textureWidth, int textureHeight) {
+
         super(id, x, y, textureWidth, textureHeight, "");
         this.texture = texture;
         this.textureWidth = textureWidth;
@@ -72,7 +64,8 @@ public class GuiButtonGraphical extends GuiButton {
     }
 
     @Override
-    public void drawButton(Minecraft mc, int posX, int posY) {
+    public void drawButton (Minecraft mc, int posX, int posY) {
+
         super.drawButton(mc, posX, posY);
         mc.getTextureManager().bindTexture(this.getTexture());
 
@@ -86,7 +79,8 @@ public class GuiButtonGraphical extends GuiButton {
      *
      * @return The image to be drawn on the button.
      */
-    public ResourceLocation getTexture() {
+    public ResourceLocation getTexture () {
+
         return this.texture;
     }
 
@@ -95,7 +89,8 @@ public class GuiButtonGraphical extends GuiButton {
      *
      * @return The width of the texture.
      */
-    public int getTextureWidth() {
+    public int getTextureWidth () {
+
         return this.textureWidth;
     }
 
@@ -104,7 +99,8 @@ public class GuiButtonGraphical extends GuiButton {
      *
      * @return The height of the texture.
      */
-    public int getTextureHeight() {
+    public int getTextureHeight () {
+
         return this.textureHeight;
     }
 }

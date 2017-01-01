@@ -30,12 +30,15 @@ minecraft {
     mappings = "stable_29"
     clientJvmArgs = ["-Dfml.coreMods.load=$corePlugin"]
     serverJvmArgs = ["-Dfml.coreMods.load=$corePlugin"]
+    useDepAts = true
 }
 
 jar {
     manifest {
         attributes "FMLCorePlugin": corePlugin
         attributes "FMLCorePluginContainsFMLMod": "true"
+        attributes "FMLAT" : "mmdlib_at.cfg"
+        
     }
 }
 
@@ -63,4 +66,6 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude "mcmod.info"
     }
+    
+    rename '(.+_at.cfg)', 'META-INF/$1'
 }
