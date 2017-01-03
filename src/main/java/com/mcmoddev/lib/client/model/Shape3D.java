@@ -5,11 +5,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class Shape3D {
+
     public PositionTransformVertex[] vertices;
     public TexturedPolygon[] faces;
 
     public Shape3D(PositionTransformVertex[] verts, TexturedPolygon[] poly) {
-        vertices = verts;
-        faces = poly;
+        this.vertices = verts;
+        this.faces = poly;
     }
 }

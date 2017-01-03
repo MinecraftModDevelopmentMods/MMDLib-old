@@ -1,5 +1,7 @@
 package com.mcmoddev.lib.util;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,77 +14,76 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-
-
 public abstract class TileEntityBase extends TileEntity {
 
-    public int x() {
-        return pos.getX();
+    public int x () {
+        return this.pos.getX();
     }
 
-    public int y() {
-        return pos.getY();
+    public int y () {
+        return this.pos.getY();
     }
 
-    public int z() {
-        return pos.getZ();
-    }
-
-    @Override
-    public abstract void readFromNBT(NBTTagCompound compound);
-
-    @Override
-    public void onChunkUnload() {
-        if (!this.isInvalid()) this.invalidate();
-    }
-
-    public void onChunkLoad() {
-        if (this.isInvalid()) this.validate();
-        markForUpdate();
+    public int z () {
+        return this.pos.getZ();
     }
 
     @Override
-    public abstract NBTTagCompound writeToNBT(NBTTagCompound compound);
+    public abstract void readFromNBT (NBTTagCompound compound);
+
+    @Override
+    public void onChunkUnload () {
+        if (!this.isInvalid())
+            this.invalidate();
+    }
+
+    public void onChunkLoad () {
+        if (this.isInvalid())
+            this.validate();
+        this.markForUpdate();
+    }
+
+    @Override
+    public abstract NBTTagCompound writeToNBT (NBTTagCompound compound);
 
     @Nullable
     @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound data = new NBTTagCompound();
-        writeToNBT(data);
+    public SPacketUpdateTileEntity getUpdatePacket () {
+        final NBTTagCompound data = new NBTTagCompound();
+        this.writeToNBT(data);
         return new SPacketUpdateTileEntity(this.pos, 1, data);
     }
 
-    public void markForFullUpdate() {
+    public void markForFullUpdate () {
         this.markForUpdate();
         this.markForLightUpdate();
         this.markDirty();
     }
 
     @Override
-    public NBTTagCompound getUpdateTag() {
-        return writeToNBT(new NBTTagCompound());
+    public NBTTagCompound getUpdateTag () {
+        return this.writeToNBT(new NBTTagCompound());
     }
 
     @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
+    public boolean shouldRefresh (World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
         return oldState.getBlock() != newState.getBlock();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void onDataPacket(NetworkManager networkManager, SPacketUpdateTileEntity s35PacketUpdateTileEntity) {
-        readFromNBT(s35PacketUpdateTileEntity.getNbtCompound());
-        getWorld().markBlockRangeForRenderUpdate(this.pos, this.pos);
-        markForUpdate();
+    public void onDataPacket (NetworkManager networkManager, SPacketUpdateTileEntity s35PacketUpdateTileEntity) {
+        this.readFromNBT(s35PacketUpdateTileEntity.getNbtCompound());
+        this.getWorld().markBlockRangeForRenderUpdate(this.pos, this.pos);
+        this.markForUpdate();
     }
 
-    public void markForUpdate() {
-        Block block = world.getBlockState(this.pos).getBlock();
-        this.getWorld().notifyBlockUpdate(this.pos, getWorld().getBlockState(this.pos), getWorld().getBlockState(this.pos), 3);
-        int xCoord = this.pos.getX();
-        int yCoord = this.pos.getY();
-        int zCoord = this.pos.getZ();
+    public void markForUpdate () {
+        final Block block = this.world.getBlockState(this.pos).getBlock();
+        this.getWorld().notifyBlockUpdate(this.pos, this.getWorld().getBlockState(this.pos), this.getWorld().getBlockState(this.pos), 3);
+        final int xCoord = this.pos.getX();
+        final int yCoord = this.pos.getY();
+        final int zCoord = this.pos.getZ();
         this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord - 1, zCoord), block);
         this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord + 1, zCoord), block);
         this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord - 1, yCoord, zCoord), block);
@@ -91,9 +92,9 @@ public abstract class TileEntityBase extends TileEntity {
         this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord, zCoord + 1), block);
     }
 
-    public void markForLightUpdate() {
+    public void markForLightUpdate () {
         if (this.getWorld().isRemote)
-            this.getWorld().notifyBlockUpdate(this.pos, getWorld().getBlockState(this.pos), getWorld().getBlockState(this.pos), 3);
+            this.getWorld().notifyBlockUpdate(this.pos, this.getWorld().getBlockState(this.pos), this.getWorld().getBlockState(this.pos), 3);
         this.getWorld().checkLightFor(EnumSkyBlock.BLOCK, this.pos);
     }
 }

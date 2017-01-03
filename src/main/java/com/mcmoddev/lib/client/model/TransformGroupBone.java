@@ -12,93 +12,91 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 @SideOnly(Side.CLIENT)
 public class TransformGroupBone extends TransformGroup {
+
     protected Angle3D baseAngles;
     protected Vec3d baseVector;
     protected Bone attachedBone;
     protected double weight;
 
     public TransformGroupBone(Bone bone, double wght) {
-        baseVector = bone.getPosition();
-        baseAngles = bone.getAbsoluteAngle();
-        attachedBone = bone;
-        weight = wght;
+        this.baseVector = bone.getPosition();
+        this.baseAngles = bone.getAbsoluteAngle();
+        this.attachedBone = bone;
+        this.weight = wght;
     }
 
-    public Angle3D getBaseAngles() {
-        return baseAngles.copy();
+    public Angle3D getBaseAngles () {
+        return this.baseAngles.copy();
     }
 
-    public Angle3D getTransformAngle() {
-        Angle3D returnAngle = attachedBone.getAbsoluteAngle().copy();
-        returnAngle.angleX -= baseAngles.angleX;
-        returnAngle.angleY -= baseAngles.angleY;
-        returnAngle.angleZ -= baseAngles.angleZ;
+    public Angle3D getTransformAngle () {
+        final Angle3D returnAngle = this.attachedBone.getAbsoluteAngle().copy();
+        returnAngle.angleX -= this.baseAngles.angleX;
+        returnAngle.angleY -= this.baseAngles.angleY;
+        returnAngle.angleZ -= this.baseAngles.angleZ;
         return returnAngle;
     }
 
-    public Vec3d getBaseVector() {
-        return new Vec3d(baseVector.xCoord, baseVector.yCoord, baseVector.zCoord);
+    public Vec3d getBaseVector () {
+        return new Vec3d(this.baseVector.xCoord, this.baseVector.yCoord, this.baseVector.zCoord);
     }
 
-    public Vec3d getTransformVector() {
-        return baseVector.subtract(attachedBone.getPosition());
+    public Vec3d getTransformVector () {
+        return this.baseVector.subtract(this.attachedBone.getPosition());
     }
 
-    public Vec3d getCurrentVector() {
-        return attachedBone.getPosition();
+    public Vec3d getCurrentVector () {
+        return this.attachedBone.getPosition();
     }
 
-    public double getWeight() {
-        return weight;
+    @Override
+    public double getWeight () {
+        return this.weight;
     }
 
-    public void attachBone(Bone bone) {
-        baseVector = bone.getPosition();
-        baseAngles = bone.getAbsoluteAngle();
-        attachedBone = bone;
+    public void attachBone (Bone bone) {
+        this.baseVector = bone.getPosition();
+        this.baseAngles = bone.getAbsoluteAngle();
+        this.attachedBone = bone;
     }
 
-    public Vec3d doTransformation(PositionTransformVertex vertex) {
+    @Override
+    public Vec3d doTransformation (PositionTransformVertex vertex) {
         Vec3d vector = new Vec3d(vertex.neutralVector.xCoord, vertex.neutralVector.yCoord, vertex.neutralVector.zCoord);
-        vector = getBaseVector().subtract(vector);
-        Angle3D angle = getTransformAngle();
-        setVectorRotations(vector, angle.angleX, angle.angleY, angle.angleZ);
-
+        vector = this.getBaseVector().subtract(vector);
+        final Angle3D angle = this.getTransformAngle();
+        this.setVectorRotations(vector, angle.angleX, angle.angleY, angle.angleZ);
         return vector;
     }
 
-    protected void setVectorRotations(Vec3d vector, float xRot, float yRot, float zRot) {
-        float x = xRot;
-        float y = yRot;
-        float z = zRot;
-        float xC = MathHelper.cos(x);
-        float xS = MathHelper.sin(x);
-        float yC = MathHelper.cos(y);
-        float yS = MathHelper.sin(y);
-        float zC = MathHelper.cos(z);
-        float zS = MathHelper.sin(z);
-
+    protected void setVectorRotations (Vec3d vector, float xRot, float yRot, float zRot) {
+        final float x = xRot;
+        final float y = yRot;
+        final float z = zRot;
+        final float xC = MathHelper.cos(x);
+        final float xS = MathHelper.sin(x);
+        final float yC = MathHelper.cos(y);
+        final float yS = MathHelper.sin(y);
+        final float zC = MathHelper.cos(z);
+        final float zS = MathHelper.sin(z);
         double xVec = vector.xCoord;
         double yVec = vector.yCoord;
         double zVec = vector.zCoord;
-
         // rotation around x
-        double xy = xC * yVec - xS * zVec;
-        double xz = xC * zVec + xS * yVec;
+        final double xy = xC * yVec - xS * zVec;
+        final double xz = xC * zVec + xS * yVec;
         // rotation around y
-        double yz = yC * xz - yS * xVec;
-        double yx = yC * xVec + yS * xz;
+        final double yz = yC * xz - yS * xVec;
+        final double yx = yC * xVec + yS * xz;
         // rotation around z
-        double zx = zC * yx - zS * xy;
-        double zy = zC * xy + zS * yx;
-
+        final double zx = zC * yx - zS * xy;
+        final double zy = zC * xy + zS * yx;
         xVec = zx;
         yVec = zy;
         zVec = yz;
-
-        /*vector.xCoord = xVec;
-        vector.yCoord = yVec;
-        vector.zCoord = zVec;*/
+        /*
+         * vector.xCoord = xVec; vector.yCoord = yVec; vector.zCoord = zVec;
+         */
         vector = new Vec3d(xVec, yVec, zVec);
     }
 }

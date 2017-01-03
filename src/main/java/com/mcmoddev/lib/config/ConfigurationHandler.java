@@ -1,28 +1,28 @@
 package com.mcmoddev.lib.config;
 
-import com.mcmoddev.lib.exception.DuplicateObjectsException;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mcmoddev.lib.exception.DuplicateObjectsException;
 
 public enum ConfigurationHandler {
     INSTANCE;
 
-    public List<MMDConfig> CONFIG_LIST = new ArrayList<MMDConfig>();
+    public List<MMDConfig> CONFIG_LIST = new ArrayList<>();
 
-    public <T extends MMDConfig> T registerConfig(T config) {
-        for (MMDConfig existing : CONFIG_LIST)
+    public <T extends MMDConfig> T registerConfig (T config) {
+        for (final MMDConfig existing : this.CONFIG_LIST)
             if (existing.getIdentifier().equals(config.getIdentifier()))
                 throw new DuplicateObjectsException(existing, config);
-        CONFIG_LIST.add(config);
+        this.CONFIG_LIST.add(config);
         return config;
     }
 
-    public void load() {
-        CONFIG_LIST.forEach(MMDConfig::setup);
+    public void load () {
+        this.CONFIG_LIST.forEach(MMDConfig::setup);
     }
 
-    public void save() {
-        CONFIG_LIST.forEach(config -> config.save(true));
+    public void save () {
+        this.CONFIG_LIST.forEach(config -> config.save(true));
     }
 }

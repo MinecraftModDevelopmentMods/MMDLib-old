@@ -31,31 +31,31 @@
  */
 package com.mcmoddev.lib.common.vector;
 
-import com.mcmoddev.lib.client.vector.Vector;
-
 import java.nio.FloatBuffer;
+
+import com.mcmoddev.lib.client.vector.Vector;
 
 /**
  * @author foo
  */
 public interface ReadableVector {
+
     /**
      * @return the length of the vector
      */
-    float length();
+    float length ();
 
     /**
      * @return the length squared of the vector
      */
-    float lengthSquared();
+    float lengthSquared ();
 
     /**
      * Store this vector in a FloatBuffer
      *
-     * @param buf
-     *         The buffer to store it in, at the current position
+     * @param buf The buffer to store it in, at the current position
      *
      * @return this
      */
-    Vector store(FloatBuffer buf);
+    Vector store (FloatBuffer buf);
 }

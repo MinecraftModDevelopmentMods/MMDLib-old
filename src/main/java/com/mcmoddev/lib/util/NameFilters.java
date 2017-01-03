@@ -24,12 +24,12 @@ public enum NameFilters implements FilenameFilter {
         this.file = file;
     }
 
-    public String getFile() {
-        return file;
+    public String getFile () {
+        return this.file;
     }
 
     @Override
-    public boolean accept(File dir, String name) {
+    public boolean accept (File dir, String name) {
         return name.toLowerCase().endsWith("." + this.file.toLowerCase());
     }
 }

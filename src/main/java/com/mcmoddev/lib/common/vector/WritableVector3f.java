@@ -35,8 +35,7 @@ package com.mcmoddev.lib.common.vector;
  * Writable interface to Vector3fs
  *
  * @author $author$
- * @version $revision$
- *          $Id$
+ * @version $revision$ $Id$
  */
 public interface WritableVector3f extends WritableVector2f {
 
@@ -45,7 +44,7 @@ public interface WritableVector3f extends WritableVector2f {
      *
      * @param z
      */
-    void setZ(float z);
+    void setZ (float z);
 
     /**
      * Set the X,Y,Z values
@@ -54,6 +53,5 @@ public interface WritableVector3f extends WritableVector2f {
      * @param y
      * @param z
      */
-    void set(float x, float y, float z);
-
+    void set (float x, float y, float z);
 }

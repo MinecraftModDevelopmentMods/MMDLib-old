@@ -35,13 +35,14 @@ package com.mcmoddev.lib.common.vector;
  * @author foo
  */
 public interface ReadableVector2f extends ReadableVector {
+
     /**
      * @return x
      */
-    float getX();
+    float getX ();
 
     /**
      * @return y
      */
-    float getY();
+    float getY ();
 }

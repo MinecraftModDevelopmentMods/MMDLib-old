@@ -1,13 +1,13 @@
 package com.mcmoddev.lib.util;
 
+import java.util.Map;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-
-import javax.annotation.Nullable;
-import java.util.Map;
-
 
 public class Platform {
 
@@ -18,7 +18,7 @@ public class Platform {
      *
      * @return True if running on the server
      */
-    public static boolean isServer() {
+    public static boolean isServer () {
         return FMLCommonHandler.instance().getEffectiveSide().isServer();
     }
 
@@ -27,32 +27,28 @@ public class Platform {
      *
      * @return True if running on the client
      */
-    public static boolean isClient() {
+    public static boolean isClient () {
         return FMLCommonHandler.instance().getEffectiveSide().isClient();
     }
 
     /**
      * Compare two ItemStacks to see if they are the same
      *
-     * @param itemStack1
-     *         ItemStack 1 to compare
-     * @param itemStack2
-     *         ItemStack 2 to compare
+     * @param itemStack1 ItemStack 1 to compare
+     * @param itemStack2 ItemStack 2 to compare
      *
      * @return True is they are the same
      */
-    public static boolean isSameItem(@Nullable ItemStack itemStack1, @Nullable ItemStack itemStack2) {
+    public static boolean isSameItem (@Nullable ItemStack itemStack1, @Nullable ItemStack itemStack2) {
         return itemStack1 != null && itemStack2 != null && itemStack1.isItemEqual(itemStack2);
     }
 
     /**
-     * Rotate EnumFacing around clockwise
-     * * @param forward
-     * EnumFacing to rotate
+     * Rotate EnumFacing around clockwise * @param forward EnumFacing to rotate
      *
      * @return rotated EnumFacing
      */
-    public static EnumFacing rotateAround(final EnumFacing forward) {
+    public static EnumFacing rotateAround (final EnumFacing forward) {
         switch (forward) {
             case NORTH:
                 return EnumFacing.EAST;
@@ -70,12 +66,11 @@ public class Platform {
     /**
      * Rotate EnumFacing around anti-clockwise
      *
-     * @param forward
-     *         EnumFacing to rotate
+     * @param forward EnumFacing to rotate
      *
      * @return rotated EnumFacing
      */
-    public static EnumFacing invertedRotateAround(final EnumFacing forward) {
+    public static EnumFacing invertedRotateAround (final EnumFacing forward) {
         switch (forward) {
             case NORTH:
                 return EnumFacing.WEST;
@@ -98,35 +93,28 @@ public class Platform {
      *
      * @return
      */
-    public static String getPropertyString(Map<IProperty<?>, Comparable<?>> values, String... extrasArgs) {
-        StringBuilder stringbuilder = new StringBuilder();
-
-        for (Map.Entry<IProperty<?>, Comparable<?>> entry : values.entrySet()) {
-            if (stringbuilder.length() != 0) {
+    public static String getPropertyString (Map<IProperty<?>, Comparable<?>> values, String... extrasArgs) {
+        final StringBuilder stringbuilder = new StringBuilder();
+        for (final Map.Entry<IProperty<?>, Comparable<?>> entry : values.entrySet()) {
+            if (stringbuilder.length() != 0)
                 stringbuilder.append(",");
-            }
-
-            IProperty<?> iproperty = (IProperty) entry.getKey();
+            final IProperty<?> iproperty = entry.getKey();
             stringbuilder.append(iproperty.getName());
             stringbuilder.append("=");
             stringbuilder.append(getPropertyName(iproperty, (Comparable) entry.getValue()));
         }
-
-        if (stringbuilder.length() == 0) {
+        if (stringbuilder.length() == 0)
             stringbuilder.append("inventory");
-        }
-
-        for (String args : extrasArgs) {
+        for (final String args : extrasArgs) {
             if (stringbuilder.length() != 0)
                 stringbuilder.append(",");
             stringbuilder.append(args);
         }
-
         return stringbuilder.toString();
     }
 
     @SuppressWarnings("unchecked")
-    private static <T extends Comparable<T>> String getPropertyName(IProperty<T> property, Comparable<?> comparable) {
+    private static <T extends Comparable<T>> String getPropertyName (IProperty<T> property, Comparable<?> comparable) {
         return property.getName((T) comparable);
     }
 
@@ -135,12 +123,12 @@ public class Platform {
      *
      * @return True if running in a dev-environment
      */
-    public static boolean isDevEnv() {
+    public static boolean isDevEnv () {
         return devEnv != 0;
     }
 
-    public static void setDev(boolean dev) {
+    public static void setDev (boolean dev) {
         if (devEnv == -1)
-            devEnv = (dev) ? 1 : 0;
+            devEnv = dev ? 1 : 0;
     }
 }

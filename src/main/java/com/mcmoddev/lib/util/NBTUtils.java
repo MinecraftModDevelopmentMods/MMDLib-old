@@ -30,41 +30,29 @@ public final class NBTUtils {
      * @param value: The unknown data you wish to write to the dataTag.
      */
     public static void setGenericNBTValue (NBTTagCompound dataTag, String tagName, Object value) {
-
         if (value instanceof String)
             dataTag.setString(tagName, (String) value);
-
         else if (value instanceof Integer)
             dataTag.setInteger(tagName, (Integer) value);
-
         else if (value instanceof Float)
             dataTag.setFloat(tagName, (Float) value);
-
         else if (value instanceof Boolean)
             dataTag.setBoolean(tagName, (Boolean) value);
-
         else if (value instanceof Double)
             dataTag.setDouble(tagName, (Double) value);
-
         else if (value instanceof Long)
             dataTag.setLong(tagName, (Long) value);
-
         else if (value instanceof Short)
             dataTag.setShort(tagName, (Short) value);
-
         else if (value instanceof Byte)
             dataTag.setByte(tagName, (Byte) value);
-
         else if (value instanceof ItemStack)
             dataTag.setTag(tagName, ((ItemStack) value).writeToNBT(new NBTTagCompound()));
-
         else if (value instanceof Entity) {
-
             final NBTTagCompound newTag = new NBTTagCompound();
             ((Entity) value).writeToNBT(newTag);
             dataTag.setTag(tagName, newTag);
         }
-
         // TODO else throw new RuntimeException("The data type of " +
         // value.getClass().getName() + " is currently not supported." + Constants.NEW_LINE +
         // "Raw Data: " + value.toString());
@@ -79,27 +67,19 @@ public final class NBTUtils {
      * @return NBTTagCompound: The same NBTTagCompound that was passed to this method.
      */
     public static NBTTagCompound writeInventoryToNBT (NBTTagCompound tag, InventoryBasic inventory) {
-
         if (inventory.hasCustomName())
             tag.setString("CustomName", inventory.getName());
-
         final NBTTagList nbttaglist = new NBTTagList();
-
         for (int slotCount = 0; slotCount < inventory.getSizeInventory(); slotCount++) {
-
             final ItemStack stackInSlot = inventory.getStackInSlot(slotCount);
-
             if (stackInSlot != null) {
-
                 final NBTTagCompound itemTag = new NBTTagCompound();
                 itemTag.setByte("Slot", (byte) slotCount);
                 stackInSlot.writeToNBT(itemTag);
                 nbttaglist.appendTag(itemTag);
             }
         }
-
         tag.setTag("Items", nbttaglist);
-
         return tag;
     }
 
@@ -113,21 +93,15 @@ public final class NBTUtils {
      *         method.
      */
     public static InventoryBasic readInventoryFromNBT (NBTTagCompound tag, InventoryBasic inventory) {
-
         if (tag.hasKey("CustomName", 8))
             inventory.setCustomName(tag.getString("CustomName"));
-
         final NBTTagList items = tag.getTagList("Items", 10);
-
         for (int storedCount = 0; storedCount < items.tagCount(); storedCount++) {
-
             final NBTTagCompound itemTag = items.getCompoundTagAt(storedCount);
             final int slotCount = itemTag.getByte("Slot") & 0xFF;
-
             if (slotCount >= 0 && slotCount < inventory.getSizeInventory())
                 inventory.setInventorySlotContents(slotCount, ItemStack.loadItemStackFromNBT(itemTag));
         }
-
         return inventory;
     }
 
@@ -142,22 +116,16 @@ public final class NBTUtils {
      * @return ItemStack[]: An array of ItemStack stored on the NBTTagCompound.
      */
     public static ItemStack[] getStoredItems (NBTTagCompound tag, int invSize) {
-
         ItemStack[] inventory = null;
-
         if (tag.hasKey("Items")) {
-
             final NBTTagList list = tag.getTagList("Items", 10);
             inventory = new ItemStack[invSize];
-
             for (int i = 0; i < list.tagCount(); i++)
                 if (!(i > list.tagCount())) {
-
                     final NBTTagCompound currentTag = list.getCompoundTagAt(i);
                     inventory[currentTag.getByte("Slot")] = ItemStack.loadItemStackFromNBT(currentTag);
                 }
         }
-
         return inventory;
     }
 
@@ -174,15 +142,11 @@ public final class NBTUtils {
      *         than all of the way.
      */
     public static NBTTagCompound getDeepTagCompound (NBTTagCompound tag, String[] tags) {
-
         NBTTagCompound deepTag = tag;
-
         if (tag != null)
             for (final String tagName : tags)
                 if (deepTag.hasKey(tagName))
                     deepTag = deepTag.getCompoundTag(tagName);
-
         return deepTag;
     }
-
 }

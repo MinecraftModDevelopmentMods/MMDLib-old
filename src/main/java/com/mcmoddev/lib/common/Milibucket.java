@@ -6,7 +6,6 @@ package com.mcmoddev.lib.common;
  * @author Tyler Hancock (Darkhax)
  */
 public enum Milibucket {
-
     NUGGET(16),
     INGOT(144),
     Bottle(333),
@@ -24,7 +23,6 @@ public enum Milibucket {
      * @param amount The amount of milibuckets (mb) in the measurement.
      */
     Milibucket(int amount) {
-
         this.amount = amount;
     }
 }

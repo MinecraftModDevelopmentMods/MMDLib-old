@@ -21,12 +21,10 @@ public class GuiButtonGraphical extends GuiButton {
      * The image to be drawn on the button.
      */
     private final ResourceLocation texture;
-
     /**
      * The width of the texture. Default is 20.
      */
     private final int textureWidth;
-
     /**
      * The height of the texture. Default is 20.
      */
@@ -41,7 +39,6 @@ public class GuiButtonGraphical extends GuiButton {
      * @param texture The image to be drawn on the button. This should be 20x20.
      */
     public GuiButtonGraphical(int id, int x, int y, ResourceLocation texture) {
-
         this(id, x, y, texture, 20, 20);
     }
 
@@ -56,7 +53,6 @@ public class GuiButtonGraphical extends GuiButton {
      * @param textureHeight The height of the texture in pixels.
      */
     public GuiButtonGraphical(int id, int x, int y, ResourceLocation texture, int textureWidth, int textureHeight) {
-
         super(id, x, y, textureWidth, textureHeight, "");
         this.texture = texture;
         this.textureWidth = textureWidth;
@@ -65,10 +61,8 @@ public class GuiButtonGraphical extends GuiButton {
 
     @Override
     public void drawButton (Minecraft mc, int posX, int posY) {
-
         super.drawButton(mc, posX, posY);
         mc.getTextureManager().bindTexture(this.getTexture());
-
         final int textureWidth = this.getTextureWidth();
         final int textureHeight = this.getTextureHeight();
         drawModalRectWithCustomSizedTexture(this.xPosition, this.yPosition, 0f, 0f, textureWidth, textureHeight, textureWidth, textureHeight);
@@ -80,7 +74,6 @@ public class GuiButtonGraphical extends GuiButton {
      * @return The image to be drawn on the button.
      */
     public ResourceLocation getTexture () {
-
         return this.texture;
     }
 
@@ -90,7 +83,6 @@ public class GuiButtonGraphical extends GuiButton {
      * @return The width of the texture.
      */
     public int getTextureWidth () {
-
         return this.textureWidth;
     }
 
@@ -100,7 +92,6 @@ public class GuiButtonGraphical extends GuiButton {
      * @return The height of the texture.
      */
     public int getTextureHeight () {
-
         return this.textureHeight;
     }
 }
