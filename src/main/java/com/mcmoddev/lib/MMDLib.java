@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 import com.mcmoddev.lib.common.debug.DebugContent;
 import com.mcmoddev.lib.config.ConfigurationHandler;
 import com.mcmoddev.lib.config.LibConfig;
-import com.mcmoddev.lib.handler.ShieldHandler;
+import com.mcmoddev.lib.handler.ForgeEventHandler;
 import com.mcmoddev.lib.util.Platform;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -23,9 +23,13 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class MMDLib {
 
     public static final String MOD_ID = "mmdlib";
+
     public static final String MOD_NAME = "MMDLib";
+
     public static final String VERSION = "0.0.1";
+
     public static final Logger LOG = LogManager.getLogger(MOD_NAME);
+
     public static Random RANDOM = new Random();
 
     @EventHandler
@@ -34,7 +38,7 @@ public class MMDLib {
 
     @EventHandler
     public void preInit (FMLPreInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new ShieldHandler());
+        MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
         ConfigurationHandler.INSTANCE.registerConfig(new LibConfig(event.getSuggestedConfigurationFile()));
         ConfigurationHandler.INSTANCE.load();
         if (Platform.isDevEnv())
