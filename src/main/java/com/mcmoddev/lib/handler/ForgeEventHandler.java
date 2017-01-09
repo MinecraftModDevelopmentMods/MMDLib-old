@@ -1,5 +1,7 @@
 package com.mcmoddev.lib.handler;
 
+import com.mcmoddev.lib.common.MMDLibRegistry;
+import com.mcmoddev.lib.common.crafting.IAnvilRecipe;
 import com.mcmoddev.lib.item.ItemCustomShield;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,11 +10,12 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class ShieldHandler {
+public class ForgeEventHandler {
 
     @SubscribeEvent
     public void attackEvent (LivingAttackEvent e) {
@@ -31,5 +34,16 @@ public class ShieldHandler {
                     e.getEntityLiving().playSound(SoundEvents.BLOCK_ANVIL_BREAK, 0.8F, 0.8F + e.getEntityLiving().getEntityWorld().rand.nextFloat() * 0.4F);
             }
         }
+    }
+
+    @SubscribeEvent
+    public void onAnvilUpdate (AnvilUpdateEvent event) {
+        for (final IAnvilRecipe recipe : MMDLibRegistry.getAnvilRecipes())
+            if (recipe.isValidRecipe(event.getLeft(), event.getRight(), event.getName())) {
+                event.setCost(recipe.getExperienceCost(event.getLeft(), event.getRight(), event.getName()));
+                event.setMaterialCost(recipe.getMaterialCost(event.getLeft(), event.getRight(), event.getName()));
+                event.setOutput(recipe.getOutput(event.getLeft(), event.getRight(), event.getName()));
+                return;
+            }
     }
 }
