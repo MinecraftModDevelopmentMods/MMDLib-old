@@ -1,7 +1,6 @@
 package com.mcmoddev.lib.util.block;
 
 import com.mcmoddev.lib.common.item.IItemStackQuery;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;

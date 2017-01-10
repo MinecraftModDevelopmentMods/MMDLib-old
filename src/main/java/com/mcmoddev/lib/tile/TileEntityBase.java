@@ -1,6 +1,4 @@
-package com.mcmoddev.lib.util;
-
-import javax.annotation.Nullable;
+package com.mcmoddev.lib.tile;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -13,6 +11,8 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public abstract class TileEntityBase extends TileEntity {
 
