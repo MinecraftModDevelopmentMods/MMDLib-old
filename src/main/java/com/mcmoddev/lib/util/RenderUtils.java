@@ -2,6 +2,9 @@ package com.mcmoddev.lib.util;
 
 import java.util.List;
 
+import net.minecraft.entity.monster.EntityGiantZombie;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityVillager;
 import org.lwjgl.opengl.GL11;
 
 import com.google.common.collect.ImmutableMap;
@@ -54,7 +57,7 @@ public class RenderUtils {
     /**
      * Registers a LayerRenderer to both the Alex and Steve player renderers.
      *
-     * @param layer The LayerRenderer to register.
+     * @param layer The LayerRenderer to registerModelMeshing.
      */
     public static void registerPlayerLayer (LayerRenderer<EntityLivingBase> layer) {
         getSteveRenderer().addLayer(layer);

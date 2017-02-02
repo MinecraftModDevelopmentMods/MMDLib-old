@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mmdlib:items/pickaxe_head",
+    "layer1": "mmdlib:items/pickaxe_rod"
+  }
+}

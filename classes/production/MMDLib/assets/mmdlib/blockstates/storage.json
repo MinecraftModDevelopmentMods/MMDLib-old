@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "normal": {
+      "model": "mmdlib:storage"
+    },
+    "inventory": {
+      "model": "mmdlib:storage"
+    }
+  }
+}

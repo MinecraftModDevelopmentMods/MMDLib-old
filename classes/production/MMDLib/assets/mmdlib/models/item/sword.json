@@ -1,0 +1,9 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mmdlib:items/sword_blade",
+    "layer1": "mmdlib:items/sword_guard",
+    "layer2": "mmdlib:items/sword_rod",
+    "layer3": "mmdlib:items/sword_gem"
+  }
+}

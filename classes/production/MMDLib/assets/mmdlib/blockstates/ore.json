@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "normal": {
+      "model": "mmdlib:ore"
+    },
+    "inventory": {
+      "model": "mmdlib:ore"
+    }
+  }
+}

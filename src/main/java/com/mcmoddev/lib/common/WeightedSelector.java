@@ -12,7 +12,7 @@ import java.util.Random;
  *
  * @author Tyler Hancock (Darkhax)
  *
- * @param <T> The type of object to register.
+ * @param <T> The type of object to registerModelMeshing.
  */
 public class WeightedSelector<T> {
 
@@ -49,7 +49,7 @@ public class WeightedSelector<T> {
      * Adds an entry to the list. The entry is created from the value and weight passed. Only
      * serves as a quality of life method.
      *
-     * @param value The value to register.
+     * @param value The value to registerModelMeshing.
      * @param weight The weight of the entry.
      * @return Whether or not the entry was added successfully.
      */

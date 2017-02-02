@@ -27,7 +27,7 @@ compileJava {
 }
 def v = "0.0.1"
 group = "com.mcmoddev"
-archivesBaseName = "lib"
+archivesBaseName = "mmdlib"
 
 if(System.getenv().BUILD_NUMBER) {
     version = v+"-jenkins"+System.getenv().BUILD_NUMBER
