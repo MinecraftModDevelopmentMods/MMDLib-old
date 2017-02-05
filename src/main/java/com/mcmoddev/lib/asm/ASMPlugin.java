@@ -21,6 +21,7 @@ public class ASMPlugin implements IFMLLoadingPlugin {
     public ASMPlugin() {
         transformerList.add(new EntityHorseTransformer());
         transformerList.add(new HorseArmorTypeTransformer());
+        transformerList.add(new EntityFishHookTransformer());
     }
 
     @Override
