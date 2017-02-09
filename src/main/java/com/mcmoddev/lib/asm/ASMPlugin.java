@@ -41,7 +41,6 @@ public class ASMPlugin implements IFMLLoadingPlugin {
 
     @Override
     public void injectData (Map<String, Object> data) {
-        Platform.setDev((Boolean) data.get("runtimeDeobfuscationEnabled"));
     }
 
     @Override
