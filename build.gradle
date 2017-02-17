@@ -20,6 +20,7 @@ buildscript {
 }
 
 apply plugin: "net.minecraftforge.gradle.forge"
+apply plugin: "maven-publish"
 
 sourceCompatibility = targetCompatibility = "1.8"
 compileJava {
@@ -27,13 +28,14 @@ compileJava {
 }
 def v = "0.0.1"
 group = "com.mcmoddev"
-archivesBaseName = "mmdlib"
+archivesBaseName = "MMDLib"
 
 if(System.getenv().BUILD_NUMBER) {
     version = v+"-jenkins"+System.getenv().BUILD_NUMBER
 } else {
     version = v
 }
+
 minecraft {
     version = "1.10.2-12.18.3.2185"
     runDir = "run"
@@ -42,6 +44,30 @@ minecraft {
     clientJvmArgs = ["-Dfml.coreMods.load=$corePlugin"]
     serverJvmArgs = ["-Dfml.coreMods.load=$corePlugin"]
     useDepAts = true
+}
+
+class Secrets {
+    def data = null
+
+    def getProperty(String key) {
+        return data ? data[key] : ""
+    }
+}
+
+import groovy.json.JsonSlurper
+
+def secretFile
+if (System.getenv().SECRET_FILE) {
+    secretFile = file System.getenv().SECRET_FILE
+} else {
+    secretFile = file "secret.json"
+}
+
+project.ext.secret = new Secrets()
+if (secretFile.exists()) {
+    secretFile.withReader {
+        project.ext.secret.data = new JsonSlurper().parse it
+    }
 }
 
 jar {
@@ -67,11 +93,43 @@ task deobfJar(type: Jar) {
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = "javadoc"
-    from javadoc.destinationDir
+    from javadoc.getDestinationDir()
 }
 
 artifacts {
+//  archives apiJar
     archives deobfJar
+    archives sourceJar
+    archives javadocJar
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId project.archivesBaseName
+            version project.version
+            from components.java
+            artifact sourceJar {
+                classifier "sources"
+            }
+            artifact deobfJar {
+                classifier "deobf"
+            }
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username secret.username
+                password secret.password
+            }
+            url secret.url
+        }
+    }
 }
 
 processResources {
