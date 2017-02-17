@@ -91,16 +91,10 @@ task deobfJar(type: Jar) {
     from sourceSets.main.output
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = "javadoc"
-    from javadoc.getDestinationDir()
-}
-
 artifacts {
 //  archives apiJar
     archives deobfJar
     archives sourceJar
-    archives javadocJar
 }
 
 publishing {
@@ -115,9 +109,6 @@ publishing {
             }
             artifact deobfJar {
                 classifier "deobf"
-            }
-            artifact javadocJar {
-                classifier "javadoc"
             }
         }
     }
