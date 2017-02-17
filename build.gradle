@@ -26,7 +26,7 @@ sourceCompatibility = targetCompatibility = "1.8"
 compileJava {
     sourceCompatibility = targetCompatibility = "1.8"
 }
-def v = "0.1.0"
+def v = "1.0.0-pre1"
 group = "com.mcmoddev"
 archivesBaseName = "MMDLib"
 

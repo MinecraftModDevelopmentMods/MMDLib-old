@@ -1,10 +1,8 @@
 package com.mcmoddev.lib;
 
-import com.mcmoddev.lib.common.debug.DebugContent;
 import com.mcmoddev.lib.config.ConfigurationHandler;
 import com.mcmoddev.lib.config.LibConfig;
 import com.mcmoddev.lib.handler.ForgeEventHandler;
-import com.mcmoddev.lib.util.Platform;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -39,8 +37,6 @@ public class MMDLib {
         MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
         ConfigurationHandler.INSTANCE.registerConfig(new LibConfig(event.getSuggestedConfigurationFile()));
         ConfigurationHandler.INSTANCE.load();
-        if (Platform.isDevEnv())
-            DebugContent.register();
     }
 
     @EventHandler
