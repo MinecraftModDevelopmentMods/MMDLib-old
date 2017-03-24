@@ -26,7 +26,7 @@ sourceCompatibility = targetCompatibility = "1.8"
 compileJava {
     sourceCompatibility = targetCompatibility = "1.8"
 }
-def v = "1.10.2-1.0.0"
+def v = "1.11.2-1.0.0"
 group = "com.mcmoddev"
 archivesBaseName = "MMDLib"
 
@@ -37,10 +37,10 @@ if(System.getenv().BUILD_NUMBER) {
 }
 
 minecraft {
-    version = "1.10.2-12.18.3.2185"
+    version = "1.11.2-13.20.0.2260"
     runDir = "run"
 
-    mappings = "stable_29"
+    mappings = "snapshot_20170323"
     clientJvmArgs = ["-Dfml.coreMods.load=$corePlugin"]
     serverJvmArgs = ["-Dfml.coreMods.load=$corePlugin"]
     useDepAts = true

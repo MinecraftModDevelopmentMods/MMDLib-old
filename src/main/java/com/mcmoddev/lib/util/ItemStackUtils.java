@@ -26,7 +26,7 @@ public final class ItemStackUtils {
     /**
      * Sets a stack compound to an ItemStack if it does not already have one.
      *
-     * @param stackItemStack having a tag set on it.
+     * @param stack ItemStack having a tag set on it.
      */
     public static NBTTagCompound prepareDataTag (ItemStack stack) {
         if (!stack.hasTagCompound())
@@ -37,8 +37,8 @@ public final class ItemStackUtils {
     /**
      * Sets the lore for an ItemStack. This will override any existing lore on that item.
      *
-     * @param stackAn instance of an ItemStack to write the lore to.
-     * @param loreAn array containing the lore to write. Each line is a new entry.
+     * @param stack An instance of an ItemStack to write the lore to.
+     * @param lore An array containing the lore to write. Each line is a new entry.
      * @return ItemStackThe same instance of ItemStack that was passed to this method.
      */
     public static ItemStack setLore (ItemStack stack, String[] lore) {
@@ -59,7 +59,7 @@ public final class ItemStackUtils {
      * and allows for a damage sensitive item to be represented as a String. The format looks
      * like "itemid#damage". This method is not intended for actually saving an ItemStack.
      *
-     * @param stackThe instance of ItemStack to write.
+     * @param stack The instance of ItemStack to write.
      * @return StringA string which can be used to represent a damage sensitive item.
      */
     public static String writeStackToString (ItemStack stack) {
@@ -71,7 +71,7 @@ public final class ItemStackUtils {
      * from a configuration file. The correct format is "itemid#damage". This method is
      * intended for use with writeStackToString.
      *
-     * @param stackStringThe string used to construct an ItemStack.
+     * @param stackString The string used to construct an ItemStack.
      * @return ItemStackAn ItemStack representation of a damage sensitive item.
      */
     public static ItemStack createStackFromString (String stackString) {
@@ -86,7 +86,7 @@ public final class ItemStackUtils {
      * OreDictionary for all items that match with a dye item. The color of that dye will be
      * returned. This is currently only for dyes.
      *
-     * @param stackThe ItemStack to check for the color.
+     * @param stack The ItemStack to check for the color.
      * @return intAn Integer based representation of a color. Java's Color can be used to
      *         convert these back into their primary components.
      */
@@ -103,7 +103,7 @@ public final class ItemStackUtils {
      * Checks if an ItemStack is valid. A valid ItemStack is one that is not null, and has an
      * Item.
      *
-     * @param stackThe ItemStack to check.
+     * @param stack The ItemStack to check.
      * @return booleanTrue if the stack is valid, false if it is not.
      */
     public static boolean isValidStack (ItemStack stack) {
@@ -114,8 +114,8 @@ public final class ItemStackUtils {
      * Compares all ore dictionary names associated with an ItemStack, with the provided ore
      * dictionary name.
      *
-     * @param stackThe ItemStack to compare against.
-     * @param oreNameThe ore dictionary name to compare to.
+     * @param stack The ItemStack to compare against.
+     * @param oreName The ore dictionary name to compare to.
      * @return booleanTrue if any of the ore dictionary entries for the provided stack match
      *         the provided ore name.
      */
@@ -130,8 +130,8 @@ public final class ItemStackUtils {
      * Compares all applicable ore dictionary names for two item stacks, to see if either have
      * a name in common.
      *
-     * @param firstStackThe first ItemStack to compare.
-     * @param secondStackThe second ItemStack to compare.
+     * @param firstStack The first ItemStack to compare.
+     * @param secondStack The second ItemStack to compare.
      * @return booleanTrue, if any of the ore dictionary names for either stack are the same.
      */
     public static boolean doStacksShareOreName (ItemStack firstStack, ItemStack secondStack) {
@@ -146,8 +146,8 @@ public final class ItemStackUtils {
      * Checks to see if two ItemStacks are similar. A similar stack has the same item, and the
      * same damage.
      *
-     * @param firstStackThe first stack to check.
-     * @param secondStackThe second stack to check.
+     * @param firstStack The first stack to check.
+     * @param secondStack The second stack to check.
      * @return booleanTrue if stacks are similar, or if both are null.
      */
     public static boolean areStacksSimilar (ItemStack firstStack, ItemStack secondStack) {
@@ -158,12 +158,12 @@ public final class ItemStackUtils {
      * Checks to see if two ItemStacks are similar. A similar stack has the same item, and the
      * same damage and same size.
      *
-     * @param firstStackThe first stack to check.
-     * @param secondStackThe second stack to check.
+     * @param firstStack The first stack to check.
+     * @param secondStack The second stack to check.
      * @return booleanTrue if stacks are similar, or if both are null.
      */
     public static boolean areStacksSimilarWithSize (ItemStack firstStack, ItemStack secondStack) {
-        return firstStack == null && secondStack == null ? true : isValidStack(firstStack) && isValidStack(secondStack) && firstStack.getItemDamage() == secondStack.getItemDamage() && firstStack.getItem() == secondStack.getItem() && firstStack.stackSize == secondStack.stackSize;
+        return firstStack == ItemStack.EMPTY && secondStack == ItemStack.EMPTY || isValidStack(firstStack) && isValidStack(secondStack) && firstStack.getItemDamage() == secondStack.getItemDamage() && firstStack.getItem() == secondStack.getItem() && firstStack.getCount() == secondStack.getCount();
     }
 
     public static ItemStack writePotionEffectsToStack (ItemStack stack, PotionEffect[] effects) {
@@ -178,9 +178,9 @@ public final class ItemStackUtils {
     /**
      * Writes an ItemStack as a sub NBTTagCompound on a larger NBTTagCompound.
      *
-     * @param stackThe ItemStack to write to the tag.
-     * @param tagThe NBTTagCompound to write the stack to.
-     * @param tagNameThe name for this new NBTTagCompound entry.
+     * @param stack The ItemStack to write to the tag.
+     * @param tag The NBTTagCompound to write the stack to.
+     * @param tagName The name for this new NBTTagCompound entry.
      */
     public static void writeStackToTag (ItemStack stack, NBTTagCompound tag, String tagName) {
         final NBTTagCompound stackTag = new NBTTagCompound();
@@ -191,13 +191,13 @@ public final class ItemStackUtils {
     /**
      * Safely decreases the amount of items held by an ItemStack.
      *
-     * @param stackThe ItemStack to decrease the size of.
-     * @param amountThe amount to decrease the stack size by.
+     * @param stack The ItemStack to decrease the size of.
+     * @param amount The amount to decrease the stack size by.
      * @return ItemStackNull, if the stack size is smaller than 1.
      */
     public static ItemStack decreaseStackSize (ItemStack stack, int amount) {
-        stack.stackSize -= amount;
-        return stack.stackSize <= 0 ? null : stack;
+        stack.shrink(amount);
+        return stack;
     }
 
     /**
@@ -229,9 +229,9 @@ public final class ItemStackUtils {
     /**
      * A check to see if an ItemStack exists within an array of other ItemStack.
      *
-     * @param stackThe ItemStack you are searching for.
-     * @param checkNBTShould the stacks need the same NBT for them to be the same?
-     * @param stacksThe array of ItemStack to search through.
+     * @param stack The ItemStack you are searching for.
+     * @param checkNBT Should the stacks need the same NBT for them to be the same?
+     * @param stacks The array of ItemStack to search through.
      * @return booleanWhether or not the array contains the stack you are looking for.
      */
     public static boolean isStackInArray (ItemStack stack, boolean checkNBT, ItemStack... stacks) {
@@ -251,7 +251,7 @@ public final class ItemStackUtils {
      */
     public static ItemStack copyStackWithSize (ItemStack stack, int size) {
         final ItemStack output = stack.copy();
-        output.stackSize = size;
+        output.setCount(size);
         return output;
     }
 
@@ -290,7 +290,7 @@ public final class ItemStackUtils {
      * @return The remaining/generated item.
      */
     public static ItemStack consumeStack (ItemStack stack) {
-        if (stack.stackSize == 1) {
+        if (stack.getCount() == 1) {
             if (stack.getItem().hasContainerItem(stack))
                 return stack.getItem().getContainerItem(stack);
             else

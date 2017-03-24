@@ -1,10 +1,6 @@
 package com.mcmoddev.lib.inventory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.mcmoddev.lib.util.ItemStackUtils;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -14,6 +10,9 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.common.util.Constants;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An implementation of IInventory which can be used for items that are stored on an ItemStack.
@@ -70,7 +69,7 @@ public class InventoryItem extends Item implements IInventory {
             final NBTTagCompound itemData = items.getCompoundTagAt(index);
             final int slot = itemData.getInteger("Slot");
             if (slot >= 0 && slot < this.getSizeInventory())
-                this.inventory[slot] = ItemStack.loadItemStackFromNBT(itemData);
+                this.inventory[slot] = new ItemStack(itemData);
         }
     }
     
@@ -104,7 +103,7 @@ public class InventoryItem extends Item implements IInventory {
         final List<ItemStack> list = new ArrayList<>();
         final NBTTagList items = stack.getTagCompound().getTagList("ItemInventory", Constants.NBT.TAG_COMPOUND);
         for (int index = 0; index < items.tagCount(); index++)
-            list.add(ItemStack.loadItemStackFromNBT(items.getCompoundTagAt(index)));
+            list.add(new ItemStack(items.getCompoundTagAt(index)));
         return list;
     }
     
@@ -137,7 +136,7 @@ public class InventoryItem extends Item implements IInventory {
     public ItemStack decrStackSize (int index, int count) {
         ItemStack stack = this.getStackInSlot(index);
         if (ItemStackUtils.isValidStack(stack))
-            if (stack.stackSize > count) {
+            if (stack.getCount() > count) {
                 stack = stack.splitStack(count);
                 this.markDirty();
             }
@@ -156,8 +155,8 @@ public class InventoryItem extends Item implements IInventory {
     @Override
     public void setInventorySlotContents (int index, ItemStack stack) {
         this.inventory[index] = stack;
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-            stack.stackSize = this.getInventoryStackLimit();
+        if (stack != ItemStack.EMPTY && stack.getCount() > this.getInventoryStackLimit())
+            stack.setCount(this.getInventoryStackLimit());
         this.markDirty();
     }
     
@@ -169,7 +168,7 @@ public class InventoryItem extends Item implements IInventory {
     @Override
     public void markDirty () {
         for (int index = 0; index < this.getSizeInventory(); index++)
-            if (ItemStackUtils.isValidStack(this.getStackInSlot(index)) && this.getStackInSlot(index).stackSize == 0)
+            if (ItemStackUtils.isValidStack(this.getStackInSlot(index)) && this.getStackInSlot(index).getCount() == 0)
                 this.inventory[index] = null;
         this.writeToNBT();
     }
@@ -204,7 +203,12 @@ public class InventoryItem extends Item implements IInventory {
     @Override
     public void clear () {
     }
-    
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     @Override
     public boolean isUsableByPlayer (EntityPlayer player) {
         return false;

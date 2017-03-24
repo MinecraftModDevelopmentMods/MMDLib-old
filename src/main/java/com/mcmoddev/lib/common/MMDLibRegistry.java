@@ -20,6 +20,7 @@ import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -123,7 +124,7 @@ public class MMDLibRegistry {
     @SideOnly(Side.CLIENT)
     public static void registerModels(IModelAware modelAware) {
         if (modelAware instanceof Item) {
-            List<ItemStack> allSubItems = new ArrayList<>();
+            NonNullList<ItemStack> allSubItems = NonNullList.create();
             ((Item) modelAware).getSubItems((Item) modelAware, null, allSubItems);
             int index = 0;
             List<ModelResourceLocation> modelResourceLocations = modelAware.getModelResourceLocations(new ArrayList<>());

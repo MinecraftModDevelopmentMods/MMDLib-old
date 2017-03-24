@@ -1,6 +1,5 @@
 package com.mcmoddev.lib.util;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -71,9 +70,10 @@ public final class EnchantmentUtils {
      * @param secondEnchantment The second Enchantment to check.
      * @return boolean Whether or not the two enchantments are compatible or not.
      */
-    public static boolean areEnchantmentsCompatible (Enchantment firstEnchantment, Enchantment secondEnchantment) {
+    //TODO
+    /*public static boolean areEnchantmentsCompatible (Enchantment firstEnchantment, Enchantment secondEnchantment) {
         return firstEnchantment.canApplyTogether(secondEnchantment) && secondEnchantment.canApplyTogether(firstEnchantment);
-    }
+    }*/
     
     /**
      * Gets the display string for an amount of EXP.

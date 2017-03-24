@@ -1,11 +1,5 @@
 package com.mcmoddev.lib.util;
 
-import java.util.List;
-
-import org.lwjgl.opengl.GL11;
-
-import com.google.common.collect.Lists;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -22,12 +16,14 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class ClientUtil {
@@ -54,7 +50,7 @@ public class ClientUtil {
                     return new ModelResourceLocation(resourcePath, this.getPropertyString(state.getProperties()));
                 }
             });
-            final List<ItemStack> subBlocks = Lists.newArrayList();
+            final NonNullList<ItemStack> subBlocks = NonNullList.create();
             block.getSubBlocks(Item.getItemFromBlock(block), null, subBlocks);
             for (final ItemStack stack : subBlocks) {
                 final IBlockState state = block.getStateFromMeta(stack.getMetadata());

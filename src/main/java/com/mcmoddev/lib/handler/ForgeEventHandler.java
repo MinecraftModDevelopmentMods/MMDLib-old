@@ -18,14 +18,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class ForgeEventHandler {
 
     @SubscribeEvent
-    public void attackEvent (LivingAttackEvent e) {
+    public void attackEvent(LivingAttackEvent e) {
         if (e.getEntityLiving().getActiveItemStack() == null)
             return;
         final ItemStack stack = e.getEntityLiving().getActiveItemStack();
         if (stack.getItem() instanceof ItemCustomShield && e.getAmount() > 0.0f) {
             final int i = 1 + MathHelper.floor(e.getAmount());
             stack.damageItem(i, e.getEntityLiving());
-            if (stack.stackSize <= 0) {
+            if (stack.getCount() <= 0) {
                 final EnumHand enumhand = e.getEntityLiving().getActiveHand();
                 if (e.getEntityLiving() instanceof EntityPlayer)
                     ForgeEventFactory.onPlayerDestroyItem((EntityPlayer) e.getEntityLiving(), stack, enumhand);
@@ -37,7 +37,7 @@ public class ForgeEventHandler {
     }
 
     @SubscribeEvent
-    public void onAnvilUpdate (AnvilUpdateEvent event) {
+    public void onAnvilUpdate(AnvilUpdateEvent event) {
         for (final IAnvilRecipe recipe : MMDLibRegistry.getAnvilRecipes())
             if (recipe.isValidRecipe(event.getLeft(), event.getRight(), event.getName())) {
                 event.setCost(recipe.getExperienceCost(event.getLeft(), event.getRight(), event.getName()));

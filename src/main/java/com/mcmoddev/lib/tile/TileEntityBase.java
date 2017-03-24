@@ -80,16 +80,10 @@ public abstract class TileEntityBase extends TileEntity {
 
     public void markForUpdate () {
         final Block block = this.world.getBlockState(this.pos).getBlock();
-        this.getWorld().notifyBlockUpdate(this.pos, this.getWorld().getBlockState(this.pos), this.getWorld().getBlockState(this.pos), 3);
         final int xCoord = this.pos.getX();
         final int yCoord = this.pos.getY();
         final int zCoord = this.pos.getZ();
-        this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord - 1, zCoord), block);
-        this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord + 1, zCoord), block);
-        this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord - 1, yCoord, zCoord), block);
-        this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord + 1, yCoord, zCoord), block);
-        this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord, zCoord - 1), block);
-        this.getWorld().notifyBlockOfStateChange(new BlockPos(xCoord, yCoord, zCoord + 1), block);
+        this.getWorld().notifyBlockUpdate(this.pos, this.getWorld().getBlockState(this.pos), this.getWorld().getBlockState(this.pos), 3);
     }
 
     public void markForLightUpdate () {
