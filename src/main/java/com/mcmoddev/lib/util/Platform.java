@@ -6,12 +6,13 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.item.ItemStack;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class Platform {
 
-    private static int devEnv = 0;
+    private static boolean devEnv = (boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
     /**
      * Check if the code is running on the server instance
@@ -124,11 +125,6 @@ public class Platform {
      * @return True if running in a dev-environment
      */
     public static boolean isDevEnv () {
-        return devEnv != 0;
-    }
-
-    public static void setDev (boolean dev) {
-        if (devEnv == -1)
-            devEnv = dev ? 1 : 0;
+        return devEnv;
     }
 }

@@ -21,6 +21,7 @@ public class ASMPlugin implements IFMLLoadingPlugin {
     public ASMPlugin() {
         transformerList.add(new EntityHorseTransformer());
         transformerList.add(new HorseArmorTypeTransformer());
+        transformerList.add(new EntityFishHookTransformer());
     }
 
     @Override
@@ -40,7 +41,6 @@ public class ASMPlugin implements IFMLLoadingPlugin {
 
     @Override
     public void injectData (Map<String, Object> data) {
-        Platform.setDev((Boolean) data.get("runtimeDeobfuscationEnabled"));
     }
 
     @Override

@@ -5,6 +5,8 @@ import com.mcmoddev.lib.common.item.IHorseArmor;
 
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.HorseArmorType;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -30,5 +32,9 @@ public class ASMHooks {
         if (stack != null && stack.getItem() instanceof IHorseArmor)
             return ((IHorseArmor) stack.getItem()).getArmorTexture(entity, stack);
         return type.getTextureName();
+    }
+
+    public static boolean isFishingRod(EntityPlayer angler, ItemStack stack, double distanceSqToEntity) {
+        return angler.isDead || !angler.isEntityAlive() || stack == null || !(stack.getItem() instanceof ItemFishingRod) || distanceSqToEntity > 1024.0D;
     }
 }
