@@ -4,6 +4,7 @@ import com.mcmoddev.lib.MMDLib;
 import com.mcmoddev.lib.common.item.IHorseArmor;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.HorseArmorType;
 import net.minecraft.item.Item;
@@ -25,7 +26,7 @@ public class ItemTestArmor extends Item implements IHorseArmor {
     }
 
     @Override
-    public String getArmorTexture (EntityHorse horse, ItemStack stack) {
+    public String getArmorTexture (AbstractHorse horse, ItemStack stack) {
         return "textures/entity/horse/armor/horse_armor_test.png";
     }
 }

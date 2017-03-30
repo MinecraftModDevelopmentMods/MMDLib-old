@@ -13,14 +13,20 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
+        maven {
+            name = 'sponge'
+            url = 'http://repo.spongepowered.org/maven'
+        }
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT"
+        classpath 'org.spongepowered:mixingradle:0.4-SNAPSHOT'
     }
 }
 
 apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "maven-publish"
+apply plugin: 'org.spongepowered.mixin'
 
 sourceCompatibility = targetCompatibility = "1.8"
 compileJava {
@@ -39,6 +45,7 @@ if(System.getenv().BUILD_NUMBER) {
 minecraft {
     version = "1.11.2-13.20.0.2260"
     runDir = "run"
+    makeObfSourceJar = false
 
     mappings = "snapshot_20170323"
     clientJvmArgs = ["-Dfml.coreMods.load=$corePlugin"]
@@ -81,9 +88,16 @@ jar {
 
 repositories {
     mavenCentral()
+    maven {
+        url 'https://repo.spongepowered.org/maven/'
+    }
 }
-
+configurations {
+    shade
+    compile.extendsFrom shade
+}
 dependencies {
+    shade 'org.spongepowered:mixin:0.6.8-SNAPSHOT'
 }
 
 task deobfJar(type: Jar) {

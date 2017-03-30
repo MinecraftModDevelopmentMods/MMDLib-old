@@ -1,5 +1,6 @@
 package com.mcmoddev.lib.common.item;
 
+import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.HorseArmorType;
 import net.minecraft.item.ItemStack;
@@ -22,5 +23,5 @@ public interface IHorseArmor {
      *
      * @return The location of the custom horse armor
      */
-    String getArmorTexture (EntityHorse horse, ItemStack stack);
+    String getArmorTexture (AbstractHorse horse, ItemStack stack);
 }

@@ -3,6 +3,7 @@ package com.mcmoddev.lib;
 import com.mcmoddev.lib.config.ConfigurationHandler;
 import com.mcmoddev.lib.config.LibConfig;
 import com.mcmoddev.lib.handler.ForgeEventHandler;
+import com.mcmoddev.lib.item.ItemTestArmor;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

@@ -1,50 +1,47 @@
 package com.mcmoddev.lib.asm;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-
-import com.mcmoddev.lib.util.Platform;
 
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.MCVersion;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.Name;
-import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.SortingIndex;
+import org.spongepowered.asm.launch.MixinBootstrap;
+import org.spongepowered.asm.mixin.Mixins;
+
+import javax.annotation.Nullable;
 
 @Name("mmdlib")
 @MCVersion("1.11.2")
-@SortingIndex(1001)
 public class ASMPlugin implements IFMLLoadingPlugin {
 
-    static List<ITransformer> transformerList = new ArrayList<>();
-
     public ASMPlugin() {
-        transformerList.add(new EntityHorseTransformer());
-        transformerList.add(new HorseArmorTypeTransformer());
+        MixinBootstrap.init();
+        Mixins.addConfiguration("mmd_mixin_config.json");
     }
 
     @Override
-    public String[] getASMTransformerClass () {
-        return new String[] { ASMTransformer.class.getName() };
+    public String[] getASMTransformerClass() {
+        return new String[0];
     }
 
     @Override
-    public String getModContainerClass () {
+    public String getModContainerClass() {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public String getSetupClass() {
         return null;
     }
 
     @Override
-    public String getSetupClass () {
-        return null;
+    public void injectData(Map<String, Object> data) {
+
     }
 
     @Override
-    public void injectData (Map<String, Object> data) {
-        Platform.setDev((Boolean) data.get("runtimeDeobfuscationEnabled"));
-    }
-
-    @Override
-    public String getAccessTransformerClass () {
+    public String getAccessTransformerClass() {
         return null;
     }
 }

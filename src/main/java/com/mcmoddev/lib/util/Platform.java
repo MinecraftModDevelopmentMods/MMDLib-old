@@ -1,24 +1,24 @@
 package com.mcmoddev.lib.util;
 
-import java.util.Map;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.item.ItemStack;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
+import javax.annotation.Nullable;
+import java.util.Map;
+
 public class Platform {
 
-    private static int devEnv = 0;
+    private static boolean devEnv = (boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 
     /**
      * Check if the code is running on the server instance
      *
      * @return True if running on the server
      */
-    public static boolean isServer () {
+    public static boolean isServer() {
         return FMLCommonHandler.instance().getEffectiveSide().isServer();
     }
 
@@ -27,7 +27,7 @@ public class Platform {
      *
      * @return True if running on the client
      */
-    public static boolean isClient () {
+    public static boolean isClient() {
         return FMLCommonHandler.instance().getEffectiveSide().isClient();
     }
 
@@ -36,10 +36,9 @@ public class Platform {
      *
      * @param itemStack1 ItemStack 1 to compare
      * @param itemStack2 ItemStack 2 to compare
-     *
      * @return True is they are the same
      */
-    public static boolean isSameItem (@Nullable ItemStack itemStack1, @Nullable ItemStack itemStack2) {
+    public static boolean isSameItem(@Nullable ItemStack itemStack1, @Nullable ItemStack itemStack2) {
         return itemStack1 != null && itemStack2 != null && itemStack1.isItemEqual(itemStack2);
     }
 
@@ -48,7 +47,7 @@ public class Platform {
      *
      * @return rotated EnumFacing
      */
-    public static EnumFacing rotateAround (final EnumFacing forward) {
+    public static EnumFacing rotateAround(final EnumFacing forward) {
         switch (forward) {
             case NORTH:
                 return EnumFacing.EAST;
@@ -67,10 +66,9 @@ public class Platform {
      * Rotate EnumFacing around anti-clockwise
      *
      * @param forward EnumFacing to rotate
-     *
      * @return rotated EnumFacing
      */
-    public static EnumFacing invertedRotateAround (final EnumFacing forward) {
+    public static EnumFacing invertedRotateAround(final EnumFacing forward) {
         switch (forward) {
             case NORTH:
                 return EnumFacing.WEST;
@@ -90,10 +88,9 @@ public class Platform {
      *
      * @param values
      * @param extrasArgs
-     *
      * @return
      */
-    public static String getPropertyString (Map<IProperty<?>, Comparable<?>> values, String... extrasArgs) {
+    public static String getPropertyString(Map<IProperty<?>, Comparable<?>> values, String... extrasArgs) {
         final StringBuilder stringbuilder = new StringBuilder();
         for (final Map.Entry<IProperty<?>, Comparable<?>> entry : values.entrySet()) {
             if (stringbuilder.length() != 0)
@@ -114,7 +111,7 @@ public class Platform {
     }
 
     @SuppressWarnings("unchecked")
-    private static <T extends Comparable<T>> String getPropertyName (IProperty<T> property, Comparable<?> comparable) {
+    private static <T extends Comparable<T>> String getPropertyName(IProperty<T> property, Comparable<?> comparable) {
         return property.getName((T) comparable);
     }
 
@@ -123,12 +120,7 @@ public class Platform {
      *
      * @return True if running in a dev-environment
      */
-    public static boolean isDevEnv () {
-        return devEnv != 0;
-    }
-
-    public static void setDev (boolean dev) {
-        if (devEnv == -1)
-            devEnv = dev ? 1 : 0;
+    public static boolean isDevEnv() {
+        return devEnv;
     }
 }

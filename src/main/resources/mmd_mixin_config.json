@@ -1,0 +1,10 @@
+{
+  "package": "com.mcmoddev.lib.asm",
+  "mixins": [
+    "MixinEntityHorse",
+    "MixinEntityHorseArmor"
+  ],
+  "compatibilityLevel": "JAVA_8",
+  "client": [],
+  "server": []
+}
