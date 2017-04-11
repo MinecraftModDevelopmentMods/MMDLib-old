@@ -3,30 +3,30 @@ package com.mcmoddev.lib.client;
 import com.mcmoddev.lib.client.matrix.Matrix4f;
 import com.mcmoddev.lib.client.vector.Vector3f;
 
-public class RotatedAxis {
+public class RotatedAxes {
 
     private float rotationYaw;
     private float rotationPitch;
     private float rotationRoll;
     private Matrix4f rotationMatrix;
 
-    public RotatedAxis() {
+    public RotatedAxes() {
         // Load identity
         this.rotationMatrix = new Matrix4f();
     }
 
-    public RotatedAxis(Matrix4f mat) {
+    public RotatedAxes(Matrix4f mat) {
         this.rotationMatrix = mat;
         this.convertMatrixToAngles();
     }
 
-    public RotatedAxis(float yaw, float pitch, float roll) {
+    public RotatedAxes(float yaw, float pitch, float roll) {
         this.setAngles(yaw, pitch, roll);
     }
 
     @Override
-    public RotatedAxis clone() {
-        final RotatedAxis newAxis = new RotatedAxis();
+    public RotatedAxes clone() {
+        final RotatedAxes newAxis = new RotatedAxes();
         newAxis.rotationMatrix.load(this.getMatrix());
         newAxis.convertMatrixToAngles();
         return newAxis;
@@ -86,42 +86,42 @@ public class RotatedAxis {
     }
 
     // Rotate globally by some angle about the yaw axis
-    public RotatedAxis rotateGlobalYaw(float rotateBy) {
+    public RotatedAxes rotateGlobalYaw(float rotateBy) {
         this.rotationMatrix.rotate(rotateBy * 3.14159265F / 180F, new Vector3f(0F, 1F, 0F));
         this.convertMatrixToAngles();
         return this;
     }
 
     // Rotate globally by some angle about the pitch axis
-    public RotatedAxis rotateGlobalPitch(float rotateBy) {
+    public RotatedAxes rotateGlobalPitch(float rotateBy) {
         this.rotationMatrix.rotate(rotateBy * 3.14159265F / 180F, new Vector3f(0F, 0F, 1F));
         this.convertMatrixToAngles();
         return this;
     }
 
     // Rotate globally by some angle about the roll axis
-    public RotatedAxis rotateGlobalRoll(float rotateBy) {
+    public RotatedAxes rotateGlobalRoll(float rotateBy) {
         this.rotationMatrix.rotate(rotateBy * 3.14159265F / 180F, new Vector3f(1F, 0F, 0F));
         this.convertMatrixToAngles();
         return this;
     }
 
     // Rotate globally by some angle about the yaw axis
-    public RotatedAxis rotateGlobalYawInRads(float rotateBy) {
+    public RotatedAxes rotateGlobalYawInRads(float rotateBy) {
         this.rotationMatrix.rotate(rotateBy, new Vector3f(0F, 1F, 0F));
         this.convertMatrixToAngles();
         return this;
     }
 
     // Rotate globally by some angle about the pitch axis
-    public RotatedAxis rotateGlobalPitchInRads(float rotateBy) {
+    public RotatedAxes rotateGlobalPitchInRads(float rotateBy) {
         this.rotationMatrix.rotate(rotateBy, new Vector3f(0F, 0F, 1F));
         this.convertMatrixToAngles();
         return this;
     }
 
     // Rotate globally by some angle about the roll axis
-    public RotatedAxis rotateGlobalRollInRads(float rotateBy) {
+    public RotatedAxes rotateGlobalRollInRads(float rotateBy) {
         this.rotationMatrix.rotate(rotateBy, new Vector3f(1F, 0F, 0F));
         this.convertMatrixToAngles();
         return this;
@@ -182,7 +182,7 @@ public class RotatedAxis {
         this.rotationRoll = (float) Math.atan2(this.rotationMatrix.m12, this.rotationMatrix.m11) * 180F / 3.14159265F;
     }
 
-    public RotatedAxis findLocalAxesGlobally(RotatedAxis in) {
+    public RotatedAxes findLocalAxesGlobally(RotatedAxes in) {
         // Take the input matrix
         final Matrix4f mat = new Matrix4f();
         mat.load(in.getMatrix());
@@ -191,12 +191,12 @@ public class RotatedAxis {
         mat.rotate(this.rotationPitch * 3.14159265F / 180F, new Vector3f(0F, 0F, 1F));
         mat.rotate(this.rotationYaw * 3.14159265F / 180F, new Vector3f(0F, 1F, 0F));
         // Return the globalised matrix
-        return new RotatedAxis(mat);
+        return new RotatedAxes(mat);
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("RotatedAxis{");
+        final StringBuilder sb = new StringBuilder("RotatedAxes{");
         sb.append("rotationYaw=").append(rotationYaw);
         sb.append(", rotationPitch=").append(rotationPitch);
         sb.append(", rotationRoll=").append(rotationRoll);
